@@ -2,6 +2,7 @@
 def fieldUser(cellsx: Int  = 4, cellsy: Int = 4, cellw: Int = 6, cellh: Int = 3): Unit =
   println("Entry")
   println(cells(cellsx, cellsy, cellw, cellh))
+  println("new ")
 
 @main
 def field(): Unit =
