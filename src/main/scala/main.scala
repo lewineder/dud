@@ -10,9 +10,9 @@ def genCellsY(cellsx: Int, cellsy: Int, cellw: Int, cellh: Int): String =
   genCellsX(cellsx, cellw, cellh) * cellsy
 
 def genCellsX(cellsx: Int,  cellw: Int, cellh: Int): String =
-  genCellTop(cellw) * cellsx + eol
-  (genCellBody(cellw) * cellsx + eol) * cellh
-  genCellBottom(cellw) * cellsx
+  genCellTop(cellw) * cellsx + eol +
+  (genCellBody(cellw) * cellsx + eol) * cellh +
+  genCellBottom(cellw) * cellsx + eol
 
 def genCellTop(cellw: Int): String =
   " +" + ("-" * cellw) + "+"

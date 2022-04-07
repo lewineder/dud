@@ -40,5 +40,3 @@ class mainSpec extends wordspec.AnyWordSpec {
     }
   }
 }
-
-
