@@ -1,38 +1,25 @@
 @main 
-def fieldUser(cellsx: Int  = 4, cellsy: Int = 4, cellw: Int = 6, cellh: Int = 3): Unit =
-  println("Entry")
-  println(cells(cellsx, cellsy, cellw, cellh))
-  println("new ")
+def field(cellsx: Int  = 1, cellsy: Int = 1, cellw: Int = 5, cellh: Int = 2): Unit =
+  println("Drunter und Drüber")
+  println(genCellsY(cellsx, cellsy, cellw, cellh))
 
-@main
-def field(): Unit =
-  println("Entry")
-  println(cells(8,5,5,2))
+val eol: String =
+  sys.props("line.separator")
 
-val eol = sys.props("line.separator")
-val sep = "    "
+def genCellsY(cellsx: Int, cellsy: Int, cellw: Int, cellh: Int): String =
+  genCellsX(cellsx, cellw, cellh) * cellsy
 
-def genscrollent(cellw: Int = 4, cellh: Int = 2, cellsx: Int = 3) =
-  val con = cellw*cellsx + cellsx *3
-  (sep +  ("_" * (con + 8)) + eol +
-  (" / \\ " + sep + sep + " " * con + "\\." + eol) +
-  ("|   |" + sep + sep + (" " * con) + "|." + eol) +
-  (" \\_ |" + sep + sep + (" " * con) + "|." + eol))
+def genCellsX(cellsx: Int,  cellw: Int, cellh: Int): String =
+  genCellTop(cellw) * cellsx + eol
+  (genCellBody(cellw) * cellsx + eol) * cellh
+  genCellBottom(cellw) * cellsx
 
+def genCellTop(cellw: Int): String =
+  " +" + ("-" * cellw) + "+"
 
-def genscrollend(cellw: Int, cellsx: Int) = 
-  val con = cellw*cellsx + cellsx *3
-  (sep + "|" + "   " + ("_" * con) + "_____|___" + eol) +
-  ( sep + "|" + "  /" + (" " * con) + "        /" + eol) +
-  ( sep + "\\" + "_/_" + ("_" * con) + "_______/ " + eol) 
+def genCellBody(cellw: Int): String =
+  " |" + (" " * cellw) + "|"
 
-def gencell(cellw: Int = 4, cellh: Int = 2, cellsx: Int = 3) =
-  (sep + "|" + sep + ( " +" + ("-" * cellw) + "+") * cellsx + sep + "|. " + eol) +
-  (sep + "|" + sep + ( " |" + (" " * cellw) + "|") * cellsx + sep + "|. " + eol) * cellh +
-  (sep + "|" + sep + ( " +" + ("-" * cellw) + "+") * cellsx + sep + "|. " )
-
-def cells(cellsx: Int = 8, cellsy: Int = 5, cellw: Int = 5, cellh: Int = 2) =
-  genscrollent(cellw, cellh, cellsx) +
-  (gencell(cellw, cellh, cellsx) + eol) * cellsy +
-  genscrollend(cellw, cellsx)
+def genCellBottom(cellw: Int): String =
+  " +" + ("-" * cellw) + "+"
 
