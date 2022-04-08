@@ -19,6 +19,14 @@ class mainSpec extends AnyWordSpec {
       eol should be (sys.props("line.separator"))
     }
 
+    "have a player-count-checking function" in {
+      getPlayerCount("1") should be (1)
+      getPlayerCount("2") should be (2)
+    }
+
+
+
+
     "have a scalable field in x and y-Direction" in {
       genCellsY(1, 1, 1, 1) should be (" +-+" + eol + " | |" + eol + " +-+" + eol)
       genCellsY(2, 2, 2, 2) should be
@@ -26,7 +34,7 @@ class mainSpec extends AnyWordSpec {
         " +--+ +--+" + eol + " |  | |  |" + eol + " |  | |  |" + eol + " +--+ +--+" + eol)
     }
     "have a scalable row of scalable Cells like " +
-    "+-----+ +-----+\n|     | |     |\n|     | |     |\n+-----+ +-----+" in {
+    "\n+-----+ +-----+\n|     | |     |\n|     | |     |\n+-----+ +-----+" in {
       genCellsX(1, 1, 1) should be (" +-+" + eol + " | |" + eol + " +-+" + eol)
       genCellsX(2, 2, 2) should be
         (" +--+ +--+" + eol + " |  | |  |" + eol + " |  | |  |" + eol + " +--+ +--+" + eol)

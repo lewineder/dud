@@ -1,10 +1,15 @@
-@main 
+import scala.io.StdIn.readLine
+
+@main
 def field(cellsx: Int  = 1, cellsy: Int = 1, cellw: Int = 5, cellh: Int = 2): Unit =
   println("Drunter und Drüber")
   println(genCellsY(cellsx, cellsy, cellw, cellh))
 
 val eol: String =
   sys.props("line.separator")
+
+def getPlayerCount(s: String): Int =
+  s.toInt
 
 def genCellsY(cellsx: Int, cellsy: Int, cellw: Int, cellh: Int): String =
   genCellsX(cellsx, cellw, cellh) * cellsy
