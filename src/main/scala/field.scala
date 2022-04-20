@@ -1,15 +1,19 @@
+val eol: String =
+  sys.props("line.separator")
 
-def genFieldMatrix(i: Int = 10): Array[Array[Int]] =
-    val arr = Array.ofDim[Int](i, i + 2)
-    for(index <- 0 to 9)
+def genFieldMatrix(i: Int = 7): Array[Array[Int]] =
+    val arr = Array.ofDim[Int](i + 1, i + 3)
+    for(index <- 0 until 8)
       arr(index)(0) = 100
       arr(index)(1) = 100
+      arr(0)(index + 2) = 1000 + index
+      arr(index)(2) = 1010 + index
     return arr
 
 
 def passNewStateToField(matrix: Array[Array[Int]], i: Int = 0, j: Int = 0, value: Int = 0): Array[Array[Int]] =
     matrix(i)(j + 2) = value
-    matrix
+    return matrix
 
 def readyStringsFromArray(stringArray: Array[String]): String =
     stringArray.mkString
@@ -36,6 +40,7 @@ def fontOfElement(number: Int): String =
     case 10 => "+--| ¦ |--+"
     case 12 => "+--| ¦ |--+"
     case 100 => "           "
+    case x if 1000 until 1020 contains x => "           "
     case _ => "+---------+"
   }
 
@@ -63,6 +68,8 @@ def topStringOfElement(number: Int): String =
     case 11 => "!_________!"
     case 12 => "|  | ¦ |o |"
     case 100 => "           "
+    case x if 1011 until 1020 contains x => "       ^   "
+    case _ => "           "
   }
 def midStringOfElement(number: Int): String =
   number match {
@@ -75,6 +82,14 @@ def midStringOfElement(number: Int): String =
     case 11 => "___________"
     case 12 => "|  | ¦ || |"
     case 100 => "           "
+    case 1011 => "       1   "
+    case 1012 => "       2   "
+    case 1013 => "       3   "
+    case 1014 => "       4   "
+    case 1015 => "       5   "
+    case 1016 => "       6   "
+    case 1017 => "       7   "
+    case _ => "           "
   }
 
 def botStringOfElement(number: Int): String =
@@ -88,4 +103,13 @@ def botStringOfElement(number: Int): String =
     case 11 => "|         |"
     case 12 => "|  | ¦ |  |"
     case 100 => "           "
+    case 1001 => "  .< 1 >.  "
+    case 1002 => "  .< 2 >.  "
+    case 1003 => "  .< 3 >.  "
+    case 1004 => "  .< 4 >.  "
+    case 1005 => "  .< 5 >.  "
+    case 1006 => "  .< 6 >.  "
+    case 1007 => "  .< 7 >.  "
+    case x if 1011 until 1020 contains x => "       v   "
+    case _ => "           "
   }
