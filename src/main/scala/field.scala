@@ -1,28 +1,32 @@
 val eol: String =
   sys.props("line.separator")
 
+//Tested
 def genFieldMatrix(i: Int = 7): Array[Array[Int]] =
     val arr = Array.ofDim[Int](i + 1, i + 3)
-    for(index <- 0 until 8)
+    for(index <- 0 until i + 1)
       arr(index)(0) = 100
       arr(index)(1) = 100
       arr(0)(index + 2) = 1000 + index
       arr(index)(2) = 1010 + index
     return arr
 
-
+//Tested
 def passNewStateToField(matrix: Array[Array[Int]], i: Int = 0, j: Int = 0, value: Int = 0): Array[Array[Int]] =
     matrix(i)(j + 2) = value
     return matrix
 
+//Tested
 def readyStringsFromArray(stringArray: Array[String]): String =
     stringArray.mkString
 
+//Tested
 def readyStringsFromMatrix(matrix: Array[Array[String]]): Array[String] =
     for {row <- matrix} yield {
       row.mkString
     }
 
+//Tested
 def genStringsFromMatrix(matrix: Array[Array[Int]]): Array[Array[String]] =
     for { row  <- matrix } yield {
         (genTopStringFromRow(row) :+ eol) ++
@@ -30,11 +34,13 @@ def genStringsFromMatrix(matrix: Array[Array[Int]]): Array[Array[String]] =
         (genTopStringFromRow(row) :+ eol)
     }
 
+//Tested
 def genTopStringFromRow(numberArray: Array[Int]): Array[String] =
     for { element <- numberArray } yield {
         fontOfElement(element)
     }
 
+//Tested
 def fontOfElement(number: Int): String =
   number match {
     case 10 => "+--| ¦ |--+"
@@ -44,7 +50,7 @@ def fontOfElement(number: Int): String =
     case _ => "+---------+"
   }
 
-
+//Tested
 def genBodyStringFromRow(numberArray: Array[Int]): Array[String] =
       ((for {element <- numberArray} yield {
           topStringOfElement(element)
@@ -56,7 +62,7 @@ def genBodyStringFromRow(numberArray: Array[Int]): Array[String] =
           botStringOfElement(element)
       }) :+ eol)
 
-
+//Tested
 def topStringOfElement(number: Int): String =
   number match {
     case 0 => "|         |"
@@ -71,6 +77,8 @@ def topStringOfElement(number: Int): String =
     case x if 1011 until 1020 contains x => "       ^   "
     case _ => "           "
   }
+
+//Tested
 def midStringOfElement(number: Int): String =
   number match {
     case 0 => "|         |"
@@ -92,6 +100,8 @@ def midStringOfElement(number: Int): String =
     case _ => "           "
   }
 
+
+//Tested
 def botStringOfElement(number: Int): String =
   number match {
     case 0 => "|         |"

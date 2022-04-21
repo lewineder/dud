@@ -1,8 +1,11 @@
+import scala.io.StdIn.readLine
+
+//Not Testable
 def tuiStartUpMenu(): Array[String] =
     println("> Willkommen zu drunter und drüber")
     return getPLayerNames(4)
 
-
+//Not Testable
 def getPLayerNames(playerCount: Int): Array[String] =
     val spielerArray = Array.ofDim[String](playerCount)
     println("> Name Spieler 1 eingeben:")
@@ -17,6 +20,7 @@ def getPLayerNames(playerCount: Int): Array[String] =
 
     return spielerArray
 
+//Not Testable
 def printPlayerNames(playerNames: Array[String], turn: Int): String =
     ("                                  " +
     "Spieler 1: " +
@@ -39,6 +43,7 @@ def printPlayerNames(playerNames: Array[String], turn: Int): String =
     eol +
     eol
 
+//Not Testable
 def placeHouses(playerNames: Array[String], matrix: Array[Array[Int]]): Array[Array[Int]] =
     var m = matrix
     for ((a,i) <- playerNames.view.zipWithIndex)
@@ -52,12 +57,12 @@ def placeHouses(playerNames: Array[String], matrix: Array[Array[Int]]): Array[Ar
     return m
 
 
-
+//Testable but not Necessary
 def placeHouseMssg(s: String): String =
     ("\n> Haus von " + s +  " platzieren (x und y Koordinate)")
 
 
-
+//Not Testable
 def TURNS(playerNames: Array[String], matrix: Array[Array[Int]]): Int =
 
     println(
