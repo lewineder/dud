@@ -1,3 +1,4 @@
+//Tested
 val eol: String =
   sys.props("line.separator")
 
