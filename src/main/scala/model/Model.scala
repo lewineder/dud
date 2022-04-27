@@ -4,42 +4,60 @@ val eol: String =
 
 //Tested
 def genFieldMatrix(i: Int = 7): Array[Array[Int]] =
-    val arr = Array.ofDim[Int](i + 1, i + 3)
-    for(index <- 0 until i + 1)
-      arr(index)(0) = 100
-      arr(index)(1) = 100
-      arr(0)(index + 2) = 1000 + index
-      arr(index)(2) = 1010 + index
-    return arr
+  val arr = Array.ofDim[Int](i + 1, i + 3)
+  for(index <- 0 until i + 1)
+    arr(index)(0) = 100
+    arr(index)(1) = 100
+    arr(0)(index + 2) = 1000 + index
+    arr(index)(2) = 1010 + index
+  return arr
 
 //Tested
 def passNewStateToField(matrix: Array[Array[Int]], i: Int = 0, j: Int = 0, value: Int = 0): Array[Array[Int]] =
-    matrix(i)(j + 2) = value
-    return matrix
+  matrix(i)(j + 2) = value
+  return matrix
+
+
+//todo: TESTING
+def genStringOfMatrix(matrix: Array[Array[Int]]): String =
+  readyStringsFromArray(readyStringsFromMatrix(genStringsFromMatrix(matrix)))
+
 
 //Tested
 def readyStringsFromArray(stringArray: Array[String]): String =
-    stringArray.mkString
+  stringArray.mkString
 
 //Tested
 def readyStringsFromMatrix(matrix: Array[Array[String]]): Array[String] =
-    for {row <- matrix} yield {
-      row.mkString
-    }
+  for {row <- matrix} yield {
+    row.mkString
+  }
 
 //Tested
 def genStringsFromMatrix(matrix: Array[Array[Int]]): Array[Array[String]] =
-    for { row  <- matrix } yield {
-        (genTopStringFromRow(row) :+ eol) ++
-        genBodyStringFromRow(row) ++
-        (genTopStringFromRow(row) :+ eol)
-    }
+  for { row  <- matrix } yield {
+    (genTopStringFromRow(row) :+ eol) ++
+      genBodyStringFromRow(row) ++
+      (genTopStringFromRow(row) :+ eol)
+  }
 
 //Tested
 def genTopStringFromRow(numberArray: Array[Int]): Array[String] =
-    for { element <- numberArray } yield {
-        fontOfElement(element)
-    }
+  for { element <- numberArray } yield {
+    fontOfElement(element)
+  }
+
+//Tested
+def genBodyStringFromRow(numberArray: Array[Int]): Array[String] =
+  ((for {element <- numberArray} yield {
+    topStringOfElement(element)
+  }) :+ eol) ++
+    ((for {element <- numberArray} yield {
+      midStringOfElement(element)
+    }) :+ eol) ++
+    ((for {element <- numberArray} yield {
+      botStringOfElement(element)
+    }) :+ eol)
 
 //Tested
 def fontOfElement(number: Int): String =
@@ -50,18 +68,6 @@ def fontOfElement(number: Int): String =
     case x if 1000 until 1020 contains x => "           "
     case _ => "+---------+"
   }
-
-//Tested
-def genBodyStringFromRow(numberArray: Array[Int]): Array[String] =
-      ((for {element <- numberArray} yield {
-          topStringOfElement(element)
-      }) :+ eol) ++
-      ((for {element <- numberArray} yield {
-          midStringOfElement(element)
-      }) :+ eol) ++
-      ((for {element <- numberArray} yield {
-          botStringOfElement(element)
-      }) :+ eol)
 
 //Tested
 def topStringOfElement(number: Int): String =
