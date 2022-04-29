@@ -3,7 +3,6 @@ import org.scalatest.matchers.should.Matchers.*
 
 class fieldSpec extends AnyWordSpec {
   "field" should {
-
     "have a value Line-Seperator eol" in {
       eol should be (sys.props("line.separator"))
     }
