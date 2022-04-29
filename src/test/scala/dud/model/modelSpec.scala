@@ -1,18 +1,7 @@
-<<<<<<< HEAD:src/test/scala/model/ModelSpec.scala
 package model
 
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-=======
-import org.scalatest.wordspec.AnyWordSpec
-import org.scalatest.matchers.should.Matchers.*
-
-class fieldSpec extends AnyWordSpec {
-  "field" should {
-    "have a value Line-Seperator eol" in {
-      eol should be (sys.props("line.separator"))
-    }
->>>>>>> aufgabe5.1:src/test/scala/dud/model/fieldSpec.scala
 
 class ModelSpec extends AnyWordSpec {
   "model" should {
