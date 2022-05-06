@@ -5,7 +5,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class BuildingSpec extends AnyWordSpec {
 
-  Building.toString should be ("+---------+\n" +
+  Building.S1 should be ("+---------+\n" +
     "!_________!\n" + "___________\n" + "|         |\n" + "+---------+\n")
 
 }
