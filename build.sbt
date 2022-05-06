@@ -11,3 +11,10 @@ lazy val root = (project in file("."))
   .settings(
     name := "dud"
   )
+
+jacocoReportSettings := JacocoReportSettings(
+  "Jacoco Coverage Report",
+  None,
+  JacocoThresholds(),
+  Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
+  "utf-8")
