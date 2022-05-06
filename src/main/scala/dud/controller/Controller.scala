@@ -1,18 +1,16 @@
 package dud
 package controller
 
-import model.{Field, Building}
+import model.{Move, Field, Building}
 import util.Observable
 
-class Controller(var playingField:Field) extends Observable{
-    def setPlayer(player: Array[String]): Unit = {
-        playingField = playingField.setPlayer(player)
+class Controller(var playingField: Field) extends Observable{
+    def doAndPublish(doThis: Move => Field, move: Move): Unit = {
+        playingField = doThis(move)
         notifyObservers
     }
-
-    def setBuilding(row: Int, col: Int, building: Building):Unit = {
-        playingField = playingField.setBuilding(row-1, col-1, building)
-        notifyObservers
+    def setBuilding(move: Move): Field = {
+        playingField.setBuilding(move.row-1, move.col-1, move.building)
     }
     override def toString = playingField.toString
 }

@@ -29,10 +29,6 @@ case class Field(cells: Array[Array[Building]]) {
         a.mkString(" ")
     }
 
-    def setPlayer(player: Array[String]) = {
-        this
-    }
-
     def setBuilding(row: Int, col: Int, Building: Building): Field =  {
         copy(cells.updated(row, cells(row).updated(col, Building)))
     }

@@ -1,26 +1,28 @@
-package dud.aview
+package dud
+package aview
 
-import dud.controller.Controller
-import dud.model.{Field, Building}
+import controller.Controller
+import model.{Field, Building, Move}
 import scala.io.StdIn.readLine
-import dud.util.Observer
+import util.Observer
 
 
 class Tui(controller: Controller) extends Observer{
     controller.add(this)
     def run = 
         println(controller.playingField.toString)
-        getInputLine()
+        getInputAndPrintLoop()
+
+    def getInputAndPrintLoop(): Unit =
+        getInputLine(readLine) match
+            case None =>
+            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+        getInputAndPrintLoop()
 
     
-    def getInputLine(): Unit = {
-        val input = readLine.toList
+    def getInputLine(input: String): Option[Move] =
         input(0) match
-            case 'q' =>
-            case 'p' => {
-                val player = input.tail.toString.split(" ")
-                controller.setPlayer(player)
-                getInputLine() }
+            case 'q' => None
             case _ => {
                 val x = input(0).toString.toInt
                 val y = input(1).toString.toInt
@@ -33,10 +35,8 @@ class Tui(controller: Controller) extends Observer{
                     case "H2" => Building.H2
                     case "H3" => Building.H3
                     case "H4" => Building.H4
-                controller.setBuilding(x,y,building)
-                println(controller.toString)
-                getInputLine() }
-    }
+                Some(Move(x,y,building))
+            }
 
-    override def update: Unit = println()
+    override def update: Unit = println(controller.playingField.toString)
 }
