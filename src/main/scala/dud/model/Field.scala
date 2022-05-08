@@ -32,6 +32,8 @@ case class Field(cells: Array[Array[Building]]) {
     def setBuilding(row: Int, col: Int, Building: Building): Field =  {
         copy(cells.updated(row, cells(row).updated(col, Building)))
     }
+
+    def getBuilding(x: Int, y: Int): Building = cells(x-1)(y-1)
 /*
     def initStart(row: Int, col: Int): Field = {
 
