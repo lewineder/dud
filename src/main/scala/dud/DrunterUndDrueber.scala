@@ -1,6 +1,6 @@
 package dud
 
-import dud.model.{Field, Player, Building}
+import dud.model.{Field, Building}
 import dud.controller.Controller
 import dud.aview.Tui
 
