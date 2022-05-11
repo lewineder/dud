@@ -40,7 +40,7 @@ class FieldSpec extends AnyWordSpec {
       "called with nothing" should {
         val field1 = new Field(1, 1, Building.S1)
         "return a Field like:" in {
-          field1.setBuilding(0, 0, Building.S1) should be ("\n1\n\n+---------+\n" +
+          field1.setBuilding(0, 0, Building.S1).toString should be ("\n     1      \n\n+---------+\n" +
             "!_________!\n" + "___________     1\n" + "|         |\n" + "+---------+\n")
         }
       }

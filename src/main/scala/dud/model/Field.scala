@@ -17,7 +17,7 @@ case class Field(cells: Array[Array[Building]]) {
         val colNumber = for {i <- 1 to row
             } yield output(0 + 5*(i-1)) + "\n" + output(1 + 5*(i-1)) + "\n" + output(2+5*(i-1)) + "     " + i.toString + "\n" + output(3+5*(i-1))+ "\n" + output(4+5*(i-1)) + "\n"
         val rowNumber = for {i <- 1 to col 
-            } yield " "*5 + i.toString + " " * 6 
+            } yield " "*5 + i.toString + " " * 6
         "\n" + rowNumber.mkString("") + "\n\n" + colNumber.toList.mkString("")
         //colNumber.toList.mkString("\n")
 
@@ -33,7 +33,7 @@ case class Field(cells: Array[Array[Building]]) {
         copy(cells.updated(row, cells(row).updated(col, Building)))
     }
 
-    def getBuilding(x: Int, y: Int): Building = cells(x-1)(y-1)
+    def getBuilding(x: Int, y: Int): Building = cells(x)(y)
 /*
     def initStart(row: Int, col: Int): Field = {
 

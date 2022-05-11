@@ -15,7 +15,7 @@ class Tui(controller: Controller) extends Observer{
 
     def getInputAndPrintLoop(): Unit =
         getInputLine(readLine) match
-            case None =>
+            case None => scala.sys.exit()
             case Some(move) => controller.doAndPublish(controller.setBuilding, move)
         getInputAndPrintLoop()
 
