@@ -5,10 +5,7 @@ object Phantom {
 
     val n = 4
     def dist(): List[(Int, Int)] =
-      var lst = Seq.fill(n)((scala.util.Random.between(0, arr.size-1), scala.util.Random.between(0, arr(0).size - 1))).toSet.toList
-      if (lst.size != 4) {
-        lst = dist()
-      }
+      val lst = Seq.fill(n)((scala.util.Random.between(0, arr.size-1), scala.util.Random.between(0, arr(0).size - 1))).toSet.toList
       lst
     val build = Array(Building.H1, Building.H2, Building.H3, Building.H4)
     val rd = dist()
