@@ -4,11 +4,11 @@ object Phantom {
   def apply (arr: Array[Array[Building]]) : Array[Array[Building]]  =
 
     val n = 4
-    def dist(): List[(Int, Int)] =
-      val lst = Seq.fill(n)((scala.util.Random.between(0, arr.size-1), scala.util.Random.between(0, arr(0).size - 1))).toSet.toList
-      lst
+    var rd = Seq.fill(n)((scala.util.Random.between(0, arr.size), scala.util.Random.between(0, arr(0).size))).toSet.toList
+    while (rd.size < 4) {
+      rd = Seq.fill(n)((scala.util.Random.between(0, arr.size), scala.util.Random.between(0, arr(0).size))).toSet.toList
+    }
     val build = Array(Building.H1, Building.H2, Building.H3, Building.H4)
-    val rd = dist()
     for (i <- 0 to n-1)
       arr(rd(i)(0)) (rd(i)(1)) = build(i)
 
