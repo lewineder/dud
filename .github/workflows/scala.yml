@@ -2,9 +2,9 @@ name: Scala CI
 
 on:
   push:
-    branches: [ main, develop ,aufgabe6]
+    branches: [ main, develop, aufgabe6 ]
   pull_request:
-    branches: [ main, develop ,aufgabe6]
+    branches: [ main, develop, aufgabe6 ]
 
 permissions:
   contents: read
