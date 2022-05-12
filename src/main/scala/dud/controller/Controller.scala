@@ -1,8 +1,10 @@
 package dud
 package controller
 
-import model.{Move, Field, Building}
+import model.{Move, Building, Field}
 import util.Observable
+import util.Command
+import util.UndoManager
 
 case class Controller(var playingField: Field) extends Observable{
 
@@ -11,8 +13,14 @@ case class Controller(var playingField: Field) extends Observable{
         playingField = doThis(move)
         notifyObservers
     }
-    def setBuilding(move: Move): Field = {
-        playingField.setBuilding(move.row-1, move.col-1, move.building)
+    def doAndPublish(doThis: => Field) = {
+        playingField = doThis
+        notifyObservers
     }
+    def setBuilding(move: Move): Field = {
+        undoManager.doPlacement(playingField, PutCommand(move))
+    }
+    def undo: Field = undoManager.undoPlacement(playingField)
+    def redo: Field = undoManager.redoPlacement(playingField)
     override def toString = playingField.toString
 }
