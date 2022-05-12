@@ -4,7 +4,9 @@ package controller
 import model.{Move, Field, Building}
 import util.Observable
 
-class Controller(var playingField: Field) extends Observable{
+case class Controller(var playingField: Field) extends Observable{
+
+    val undoManager = new UndoManager[Field]
     def doAndPublish(doThis: Move => Field, move: Move): Unit = {
         playingField = doThis(move)
         notifyObservers

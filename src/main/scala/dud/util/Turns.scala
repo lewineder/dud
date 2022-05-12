@@ -2,7 +2,7 @@ package dud.util
 
 object Turns {
   trait Strategy {
-    def execute
+    def execute:Unit
   }
 
   class BuildingPlacement extends Strategy {
