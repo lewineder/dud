@@ -2,7 +2,15 @@ package dud.model
 
 object Phantom {
   def apply (arr: Array[Array[Building]]) : Array[Array[Building]]  =
+    val build = Array(Building.H1, Building.H2, Building.H3, Building.H4)
+    val n = 4
+    val rd = scala.util.Random.shuffle(0.until (arr.size * arr(0).size))
+    for (i <- 0 until n) {
+      arr(rd(i)/arr(0).size)(rd(i) % arr(0).size)  = build(i%4)
+    }
+    arr
 
+    /*
     val n = 4
     var rd = Seq.fill(n)((scala.util.Random.between(0, arr.size), scala.util.Random.between(0, arr(0).size))).toSet.toList
     while (rd.size < 4) {
@@ -13,17 +21,19 @@ object Phantom {
       arr(rd(i)(0)) (rd(i)(1)) = build(i)
 
     arr
+    */
 
     /*
     val v1 = scala.util.Random.shuffle(0 to (arr.size-1))
-    val v2 = scala.util.Random.shuffle(0 to (arr(0).size-1))
+    val v2 = List.fill(arr.size-1)(arr.size).map(scala.util.Random.nextInt)
     arr(v1(0))(v2(0)) = Building.H1
     arr(v1(1))(v2(1)) = Building.H2
     arr(v1(2))(v2(2)) = Building.H3
     arr(v1(3))(v2(3)) = Building.H4
     arr(arr.size-1)(arr(0).size-1) = Building.S2
-    */
 
+    arr
+    */
 
     /*
     def arrShuffle(arr: Array[Array[Building]]) =  {
