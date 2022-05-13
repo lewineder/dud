@@ -1,14 +1,26 @@
 package dud.model
 
-object Phantom {
+object PhantomPlayer {
   def apply (arr: Array[Array[Building]]) : Array[Array[Building]]  =
-    val build = Array(Building.H1, Building.H2, Building.H3, Building.H4)
-    val n = 4
     val rd = scala.util.Random.shuffle(0.until (arr.size * arr(0).size))
-    for (i <- 0 until n) {
-      arr(rd(i)/arr(0).size)(rd(i) % arr(0).size)  = build(i%4)
+    for (i <- 0 until (((arr.size * arr(0).size) / 20) * 4)) {
+      arr(rd(i)/arr(0).size)(rd(i) % arr(0).size) = getBuild(i%4)
     }
     arr
+
+  def getBuild = Array(Building.H1, Building.H2, Building.H3, Building.H4)
+
+  
+
+  /*
+  val build = Array(Building.H1, Building.H2, Building.H3, Building.H4)
+  val n = (arr.size * arr(0).size) / 8
+  val rd = scala.util.Random.shuffle(0.until (arr.size * arr(0).size))
+  for (i <- 0 until n) {
+    arr(rd(i)/arr(0).size)(rd(i) % arr(0).size)  = build(i%4)
+  }
+  arr
+  */
 
     /*
     val n = 4
