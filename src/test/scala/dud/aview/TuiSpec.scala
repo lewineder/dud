@@ -1,13 +1,12 @@
 package dud.aview
 
 import dud.model.*
-import dud.controller.Controller
+import dud.controller.*
 
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
 class TuiSpec extends AnyWordSpec {
-
   "The Tui" should {
     val controller = Controller(new Field(1,1,Building.Empty))
     val tui = Tui(controller)
@@ -20,6 +19,7 @@ class TuiSpec extends AnyWordSpec {
     "recognize the input 1 1 S1 as switch of an empty field to field (S1)" in {
       tui.getInputLine("1 1 S1") should be(Some(Move(0, 0, Building.S1)))
     }
+
     "and following lines:" in {
       tui.getInputLine("1 1 S2") should be(Some(Move(0, 0, Building.S2)))
       tui.getInputLine("1 1 S3") should be(Some(Move(0, 0, Building.S3)))
