@@ -9,7 +9,7 @@ import util.Observer
 
 class Tui(controller: Controller) extends Observer{
     controller.add(this)
-    def run = 
+    def run =
         println(controller.playingField.toString)
         getInputAndPrintLoop()
 
@@ -19,7 +19,7 @@ class Tui(controller: Controller) extends Observer{
             case Some(move) => controller.doAndPublish(controller.setBuilding, move)
         getInputAndPrintLoop()
 
-    
+
     def getInputLine(input: String): Option[Move] =
         input(0) match
             case 'q' => scala.sys.exit()
@@ -29,15 +29,8 @@ class Tui(controller: Controller) extends Observer{
                 val split = input.split(" ")
                 val x = split(0).toInt
                 val y = split(1).toInt
-                val b = split(2)
-                val building = b match
-                    case "S1" => Building.S1
-                    case "S2" => Building.S2
-                    case "S3" => Building.S3
-                    case "H1" => Building.H1
-                    case "H2" => Building.H2
-                    case "H3" => Building.H3
-                    case "H4" => Building.H4
+                val name = split(2)
+                val building = Building(name)
                 Some(Move(x-1,y-1,building))
             }
 

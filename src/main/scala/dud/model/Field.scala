@@ -1,7 +1,7 @@
 package dud.model
 
 case class Field(cells: Array[Array[Building]]) {
-    def this(sx: Int, sy: Int, filling: Building) = this(PhantomPlayer(Array.tabulate(sx,sy) { (row, col) => filling}))
+    def this(sx: Int, sy: Int, filling: Building) = this((Array.tabulate(sx,sy) { (row, col) => filling}))
 
     val row: Int = cells.length
     val col: Int = cells(0).length
