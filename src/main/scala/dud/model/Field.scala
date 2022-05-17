@@ -6,25 +6,36 @@ case class Field(cells: Array[Array[Building]]) {
     val row: Int = cells.length
     val col: Int = cells(0).length
     override def toString = {
-        val comb = for {
-            c <- cells
-            obj <- c
-        } yield obj.toString
-
-        val a = comb.mkString("").split("\n").toList
-
-        val output = for {
-            i <- 0 until row
-            j <- 0 to 4
-        } yield skip(a, j+col*5*i , col*5*(i+1), 5)
-
-        val colNumber = for {i <- 1 to row
-            } yield output(0 + 5*(i-1)) + "\n" + output(1 + 5*(i-1)) + "\n" + output(2+5*(i-1)) + "     " + i.toString + "\n" + output(3+5*(i-1))+ "\n" + output(4+5*(i-1)) + "\n"
-        val rowNumber = for {i <- 1 to col
-            } yield " "*5 + i.toString + " " * 6
-
-        "\n" + rowNumber.mkString("") + "\n\n" + colNumber.toList.mkString("")
+                "\n" + getRowNum.mkString("") + "\n\n" + getColNum.toList.mkString("")
     }
+
+
+
+
+    //---------------------------------------------- P R I V A T E ----------------------------------------------------
+
+    private def getColNum = for {i <- 1 to row} yield
+        getOutput(0 + 5 * (i - 1)) + "\n" +
+        getOutput(1 + 5 * (i - 1)) + "\n" +
+        getOutput(2 + 5 * (i - 1)) + "     " + i.toString + "\n" +
+        getOutput(3 + 5 * (i - 1))+ "\n" +
+        getOutput(4 + 5 * (i - 1)) + "\n"
+
+
+    private def getRowNum = for {i <- 1 to col} yield " " * 5 + i.toString + " " * 6
+
+
+    private def getComb =  for {
+        c <- cells
+        obj <- c
+    } yield obj.toString
+
+
+    private def getOutput = for {
+        i <- 0 until row
+        j <- 0 to 4
+    } yield skip(getComb.mkString("").split("\n").toList, j + col * 5 * i , col * 5 * (i + 1), 5)
+
 
     private def skip(l: List[String], start: Int, end: Int, n: Int): String = {
         val skip = for (step <- Range(start, end, n)) 
@@ -32,6 +43,14 @@ case class Field(cells: Array[Array[Building]]) {
         skip.mkString(" ")
     }
 
-    def setBuilding(row: Int, col: Int, Building: Building): Field = copy(cells.updated(row, cells(row).updated(col, Building)))
+
+
+
+    //---------------------------------------------- P U B L I C ----------------------------------------------------
+
+
+    def setBuilding(row: Int, col: Int, Building: Building): Field =
+        copy(cells.updated(row, cells(row).updated(col, Building)))
+
     def getBuilding(x: Int, y: Int): Building = cells(x)(y)
 }

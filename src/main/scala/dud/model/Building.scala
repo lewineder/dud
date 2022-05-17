@@ -1,5 +1,7 @@
 package dud.model
 
+val white = "\u001b[0m"
+
 trait Building:
     def toString(): String
 
@@ -14,23 +16,31 @@ private class Strasse3() extends Building:
     override def toString: String = "+--| ¦ |--+\n" + "|  | ¦ |o |\n" + "|  | ¦ || |\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
 
 private class Haus1(color: String) extends Building:
-    override def toString: String = "+---------+\n" + "|    " + color + ",^¦" + "\u001b[0m"  + "  |\n"+ "|   " + color +
-      "/# #\\" + "\u001b[0m"  + " |\n" + "|   " + color + "|# 1|" + "\u001b[0m"  + " |\n" + "+---------+\n"
+    override def toString: String = "+---------+\n" + "|    " + color + ",^¦" + white  + "  |\n"+ "|   " + color +
+      "/# #\\" + white  + " |\n" + "|   " + color + "|# 1|" + white  + " |\n" + "+---------+\n"
 
 private class Haus2(color: String) extends Building:
-    override def toString: String = "+---------+\n" + "|   " + color + "__" + "\u001b[0m"  + "    |\n" + "|  " + color +
-      "/#  \\" + "\u001b[0m"  + "  |\n" + "|  " + color + "|2 ¦|" + "\u001b[0m"  + "  |\n" + "+---------+\n" + "\u001b[0m"
+    override def toString: String = "+---------+\n" + "|   " + color + "__" + white  + "    |\n" + "|  " + color +
+      "/#  \\" + white  + "  |\n" + "|  " + color + "|2 ¦|" + white  + "  |\n" + "+---------+\n" + white
 
 private class Haus3(color: String) extends Building:
-    override def toString: String = "+---------+\n" + "| " + color + "___" + "\u001b[0m"  + "     |\n" + "| " + color +
-      "|# \\_" + "\u001b[0m"  + "   |\n" +"| " + color + "|# 3 |" + "\u001b[0m"  + "  |\n" + "+---------+\n" + "\u001b[0m"
+    override def toString: String = "+---------+\n" + "| " + color + "___" + white  + "     |\n" + "| " + color +
+      "|# \\_" + white  + "   |\n" +"| " + color + "|# 3 |" + white  + "  |\n" + "+---------+\n" + white
 
 private class Haus4(color: String) extends Building:
-    override def toString: String = "+---------+\n" + "|     " + color + "~°" + "\u001b[0m"  + "  |\n" + "|  " + color +
-      ",--|¦." + "\u001b[0m"  + " |\n" + "|  " + color + "|# 4 |" + "\u001b[0m"  + " |\n" + "+---------+\n" + "\u001b[0m"
+    override def toString: String = "+---------+\n" + "|     " + color + "~°" + white  + "  |\n" + "|  " + color +
+      ",--|¦." + white  + " |\n" + "|  " + color + "|# 4 |" + white  + " |\n" + "+---------+\n" + white
 
 private class Empty() extends Building:
     override def toString: String = "+---------+\n" + "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n"
+
+private class ERROR(color: String) extends Building:
+    override def toString: String = color + " E R R O R "+ white + "\n" + color + " Kein Feld " + white  + "\n" + color +
+      " gefunden  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
+
+private class NOSUCHBUILDING(color: String) extends Building:
+    override def toString: String = color + "   Kein   "+ white + "\n" + color + "  solches  " + white  + "\n" + color +
+      "  Gebäude  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
 
 
 object Building {
@@ -43,5 +53,7 @@ object Building {
         case "H3" => new Haus3("\u001b[31m")
         case "H4" => new Haus4("\u001b[36m")
         case "Empty" => new Empty()
+        case "ERROR" => new ERROR("\u001b[31m")
+        case _ => new NOSUCHBUILDING("\u001b[31m")
     }
 }

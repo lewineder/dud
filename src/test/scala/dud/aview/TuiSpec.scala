@@ -1,4 +1,4 @@
-package dud.aview
+/*package dud.aview
 
 import dud.model.*
 import dud.controller.*
@@ -30,3 +30,6 @@ class TuiSpec extends AnyWordSpec {
     }
   }
 }
+
+
+ */
