@@ -10,8 +10,6 @@ case class Field(cells: Array[Array[Building]]) {
     }
 
 
-
-
     //---------------------------------------------- P R I V A T E ----------------------------------------------------
 
     private def getColNum = for {i <- 1 to row} yield

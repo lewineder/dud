@@ -6,6 +6,12 @@ trait Building:
     def toString(): String
 
 
+trait House extends Building:
+    def toString(): String
+
+// -------------------------------------------- Factory für Building ---------------------------------------------------
+
+
 private class Strasse1() extends Building:
     override def toString: String = "+---------+\n" + "!_________!\n" + "___________\n" + "|         |\n" + "+---------+\n"
 
@@ -15,19 +21,19 @@ private class Strasse2() extends Building:
 private class Strasse3() extends Building:
     override def toString: String = "+--| ¦ |--+\n" + "|  | ¦ |o |\n" + "|  | ¦ || |\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
 
-private class Haus1(color: String) extends Building:
+private class Haus1(color: String) extends House:
     override def toString: String = "+---------+\n" + "|    " + color + ",^¦" + white  + "  |\n"+ "|   " + color +
       "/# #\\" + white  + " |\n" + "|   " + color + "|# 1|" + white  + " |\n" + "+---------+\n"
 
-private class Haus2(color: String) extends Building:
+private class Haus2(color: String) extends House:
     override def toString: String = "+---------+\n" + "|   " + color + "__" + white  + "    |\n" + "|  " + color +
       "/#  \\" + white  + "  |\n" + "|  " + color + "|2 ¦|" + white  + "  |\n" + "+---------+\n" + white
 
-private class Haus3(color: String) extends Building:
+private class Haus3(color: String) extends House:
     override def toString: String = "+---------+\n" + "| " + color + "___" + white  + "     |\n" + "| " + color +
       "|# \\_" + white  + "   |\n" +"| " + color + "|# 3 |" + white  + "  |\n" + "+---------+\n" + white
 
-private class Haus4(color: String) extends Building:
+private class Haus4(color: String) extends House:
     override def toString: String = "+---------+\n" + "|     " + color + "~°" + white  + "  |\n" + "|  " + color +
       ",--|¦." + white  + " |\n" + "|  " + color + "|# 4 |" + white  + " |\n" + "+---------+\n" + white
 
@@ -41,6 +47,7 @@ private class ERROR(color: String) extends Building:
 private class NOSUCHBUILDING(color: String) extends Building:
     override def toString: String = color + "   Kein   "+ white + "\n" + color + "  solches  " + white  + "\n" + color +
       "  Gebäude  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
+
 
 
 object Building {
@@ -57,3 +64,5 @@ object Building {
         case _ => new NOSUCHBUILDING("\u001b[31m")
     }
 }
+
+// -----------------------------------------------------------------------------------------------------------------------

@@ -8,13 +8,16 @@ import scala.language.postfixOps
 
 
 
+// ---------------------------------------------------Controller ------------------------------------------------------
+
 case class Controller(var playingField: Field, var turn: Turn) extends Observable{
 
     def handle(event: Event): Option[GameState] =
         turn.handle(event)
 
     def doAndPublish(moveToField: Move => Field, move: Move): Unit = {
-        playingField = moveToField(SaveMove(move, playingField.cells))
+        playingField = moveToField(SaveMove(move, playingField.cells)) //todo: bessere Lösung für Safe-Move finden vllt. mit Monaden try
+        turn = doTurn
         notifyObservers
     }
     def doAndPublish(toField: => Field) = {
@@ -28,7 +31,9 @@ case class Controller(var playingField: Field, var turn: Turn) extends Observabl
     def undo: Field = undoManager.undoPlacement(playingField)
     def redo: Field = undoManager.redoPlacement(playingField)
 
-    def updateTurn(): Unit = { turn = new Turn(playingField.cells, turn.turnsPlayed + 1) } //todo: braucht noch arbeit
+    def doTurn: Turn = Turn(turn.players, turn.turnsPlayed +1)
 
-    override def toString = playingField.toString + turn.toString()
+    override def toString = playingField.toString + turn.toString
 }
+
+// ---------------------------------------------------------------------------------------------------------------------

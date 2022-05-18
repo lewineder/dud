@@ -12,8 +12,8 @@ import scala.io.StdIn.readLine
 class Tui(controller: Controller) extends Observer{
     controller.add(this)
     def run =
-        println(controller.playingField.toString)
         controller.handle(StartGame())
+        println(controller.toString)
         getInputAndPrintLoop()
 
     def getInputAndPrintLoop(): Unit =
@@ -24,6 +24,7 @@ class Tui(controller: Controller) extends Observer{
         controller.handle(ResumeGame())
         getInputAndPrintLoop()
 
+    //-----------------------------------------Option für some/none --------------------------------------------------
 
     def getInputLine(input: String): Option[Move] =
         input(0) match
@@ -37,5 +38,7 @@ class Tui(controller: Controller) extends Observer{
                 Some(Move(split(0).toInt - 1,split(1).toInt - 1, building))
             }
 
-    override def update: Unit = println(controller.playingField.toString)
+    //----------------------------------------------------------------------------------------------------------------
+
+    override def update: Unit = println(controller.toString)
 }
