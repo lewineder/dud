@@ -19,7 +19,7 @@ trait Stateable:
 trait GameState:
   def toString(): String
 
-case class Playable(turn: Turn) extends GameState :
+case class Playable(turn: Turn) extends GameState : //todo: Braucht noch mehr funktionalität und Infos zum jeweiligen State
   override def toString = "Nächste Strasse setzen"
 
 case class Interrupted(turn: Turn) extends GameState :

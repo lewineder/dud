@@ -25,12 +25,12 @@ case class Turn(players: Array[Player], turnsPlayed: Int) extends Stateable:
   // -------------------------------------------------------------------------------------------------------------------
 
 
-  override def toString(): String = {
+  override def toString(): String = {  //todo: Kann man auch noch schöner machen
     /*for (state <- gamestate) yield state match {
       case Some(s) => s.toString + players2.toString
       case _ => players2.toString
     }*/
 
-    (for (p <- players2) yield p.toString).mkString("\n")
+    "\n\n" + (for (p <- players2) yield p.toString).mkString("\n")
   } //todo: braucht noch arbeit (sollte eigentlich die richtigen Player ausgeben, nicht die vals, die müssen aber von TUI und COntroller zuerst upgedatet und initialisiert
     //todo: ausserdem funktioniert die for-Schleife mit den Option-Monaden nicht)

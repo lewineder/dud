@@ -1,13 +1,15 @@
 package dud.model
 
-val white = "\u001b[0m"
-
 trait Building:
     def toString(): String
+    val white = "\u001b[0m"
 
 
 trait House extends Building:
     def toString(): String
+
+
+
 
 // -------------------------------------------- Factory für Building ---------------------------------------------------
 
