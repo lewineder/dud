@@ -1,4 +1,4 @@
-/*package dud.aview
+package dud.aview
 
 import dud.model.*
 import dud.controller.*
@@ -8,7 +8,7 @@ import org.scalatest.wordspec.AnyWordSpec
 
 class TuiSpec extends AnyWordSpec {
   "The Tui" should {
-    val controller = Controller(new Field(1,1,Building("Empty")))
+    val controller = Controller( Game(new Field(1,1,Building("Empty")), Array(Player("Farin", 0)), Turn(0)))
     val tui = Tui(controller)
     "recognize the input 'y' as a undo-call" in {
       tui.getInputLine("y") should be(None)
@@ -28,8 +28,7 @@ class TuiSpec extends AnyWordSpec {
       tui.getInputLine("1 1 H3") should be(Some(Move(0, 0, Building("H3"))))
       tui.getInputLine("1 1 H4") should be(Some(Move(0, 0, Building("H4"))))
     }
+
+
   }
 }
-
-
- */

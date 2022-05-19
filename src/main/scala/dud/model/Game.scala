@@ -3,7 +3,10 @@ package model
 
 import util.*
 
+
 case class Game (field: Field, players: Array[Player], turn: Turn){
+
+
   def handle(event: Event): Option[GameState] =
     turn.handle(event)
 

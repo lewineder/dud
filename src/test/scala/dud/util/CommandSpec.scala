@@ -1,5 +1,3 @@
-
-/*
 package dud.util
 
 import org.scalatest.matchers.should.Matchers.*
@@ -29,6 +27,3 @@ class CommandSpec extends AnyWordSpec {
     }
   }
 }
-
-
-*/

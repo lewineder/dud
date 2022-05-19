@@ -2,13 +2,14 @@ package dud.util
 
 
 // ------------------------------------------------Undo Mechanismus --------------------------------------------------
-
+//tested
 trait Command[T]:
   def noPlacement(t: T): T
   def doPlacement(t: T): T
   def undoPlacement(t: T): T
   def redoPlacement(t: T): T
 
+//tested
 class UndoManager[T]:
   private var undoStack: List[Command[T]] = Nil
   private var redoStack: List[Command[T]] = Nil
