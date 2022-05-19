@@ -32,9 +32,9 @@ case class Controller(var game: Game) extends Observable{
     val undoManager = new UndoManager[Game]
 
     
-    def setBuilding(move: Move): Field = undoManager.doPlacement(playingField, PutCommand(move))
-    def undo: Field = undoManager.undoPlacement(playingField)
-    def redo: Field = undoManager.redoPlacement(playingField)
+    def setBuilding(move: Move): Game = undoManager.doPlacement(game, PutCommand(move))
+    def undo: Game = undoManager.undoPlacement(game)
+    def redo: Game = undoManager.redoPlacement(game)
 
     //def setPlayers(s: Array[String]): Array[Player] = for(name <- s) yield Player(name, 0)
 

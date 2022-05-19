@@ -9,7 +9,6 @@ case class Field(cells: Array[Array[Building]]) {
                 "\n" + getRowNum.mkString("") + "\n\n" + getColNum.toList.mkString("")
     }
 
-
     //---------------------------------------------- P R I V A T E ----------------------------------------------------
 
     private def getColNum = for {i <- 1 to row} yield
@@ -45,8 +44,8 @@ case class Field(cells: Array[Array[Building]]) {
     //---------------------------------------------- P U B L I C ----------------------------------------------------
 
 
-    def setBuilding(row: Int, col: Int, Building: Building): Field =
-        copy(cells.updated(row, cells(row).updated(col, Building)))
+    def setBuilding(row: Int, col: Int, building: Building): Field =
+        copy(cells.updated(row, cells(row).updated(col, building)))
 
     def getBuilding(x: Int, y: Int): Building = cells(x)(y)
 }

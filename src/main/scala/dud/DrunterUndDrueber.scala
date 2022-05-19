@@ -1,6 +1,6 @@
 package dud
 
-import dud.model.{Field, Building, Turn, Player}
+import dud.model.{Field, Game, Building, Turn, Player}
 import dud.controller.Controller
 import dud.aview.Tui
 import scala.io.StdIn.readLine
