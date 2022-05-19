@@ -3,7 +3,8 @@ package aview
 
 import controller.Controller
 import dud.util.*
-import model.{Building, Field, Move, Turn}
+import model.*
+import scala.util.{Try, Success, Failure}
 
 import scala.io.StdIn.readLine
 
@@ -40,7 +41,12 @@ class Tui(controller: Controller) extends Observer{
     //-----------------------------------------Option für some/none --------------------------------------------------
 
 
-
+    private def toMove(input: String): Try[Move] = Try {
+        val split = input.split(" ")
+        val name = split(2)
+        val building = Building(name)
+        SaveMove(Move(split(0).toInt - 1,split(1).toInt - 1, building), controller.game.field.cells)
+    }
 
     def getInputLine(input: String): Option[Move] =
         input(0) match
@@ -48,10 +54,11 @@ class Tui(controller: Controller) extends Observer{
             case 'z' => controller.doAndPublish(controller.redo); None
             case 'y' => controller.doAndPublish(controller.undo); None
             case _ =>
-                val split = input.split(" ")
-                val name = split(2)
-                val building = Building(name)
-                Some(Move(split(0).toInt - 1,split(1).toInt - 1, building))
+                toMove(input) match {
+                    case Success(m) => Some(m)
+                    case Failure(n) => println(s"Falsche Eingabe: $n"); None
+                }
+
 
 
 
