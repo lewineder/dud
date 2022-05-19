@@ -2,7 +2,7 @@ package dud
 package aview
 
 import controller.Controller
-import dud.util.{ResumeGame, StartGame, Observer}
+import dud.util.*
 import model.{Building, Field, Move, Turn}
 
 import scala.io.StdIn.readLine
@@ -12,19 +12,35 @@ import scala.io.StdIn.readLine
 class Tui(controller: Controller) extends Observer{
     controller.add(this)
     def run =
-        controller.handle(StartGame()) //todo: COntroler-Handles funktionieren noch nicht - sind irgendwiw NULL obowhl Option
+        controller.handle(InitNew())
         println(controller.toString)
         getInputAndPrintLoop()
 
     def getInputAndPrintLoop(): Unit =
 
+        controller.handle(P1next())
         getInputLine(readLine) match
             case None =>
             case Some(move) => controller.doAndPublish(controller.setBuilding, move)
-        controller.handle(ResumeGame())  //todo: Noch mal Cotnroller-Handle
+
+        getInputLine(readLine) match
+            case None =>
+            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+        controller.handle(P3next())
+        getInputLine(readLine) match
+            case None =>
+            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+        controller.handle(P4next())
+        getInputLine(readLine) match
+            case None =>
+            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
         getInputAndPrintLoop()
 
+
     //-----------------------------------------Option für some/none --------------------------------------------------
+
+
+
 
     def getInputLine(input: String): Option[Move] =
         input(0) match
@@ -36,6 +52,8 @@ class Tui(controller: Controller) extends Observer{
                 val name = split(2)
                 val building = Building(name)
                 Some(Move(split(0).toInt - 1,split(1).toInt - 1, building))
+
+
 
 
     //----------------------------------------------------------------------------------------------------------------

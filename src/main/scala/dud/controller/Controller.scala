@@ -1,8 +1,8 @@
 package dud
 package controller
 
-import model.{Building, Field, GameState, Move, Player, SaveMove, Turn}
-import util.{Command, Event, Observable, UndoManager}
+import model.{Building, Field, Game, GameState, Move, Player, Turn}
+import util.*
 
 import scala.language.postfixOps
 
@@ -10,30 +10,35 @@ import scala.language.postfixOps
 
 // ---------------------------------------------------Controller ------------------------------------------------------
 
-case class Controller(var playingField: Field, var turn: Turn) extends Observable{
+case class Controller(var game: Game) extends Observable{
 
     def handle(event: Event): Option[GameState] =
-        turn.handle(event)
+        game.handle(event)
 
-    def doAndPublish(moveToField: Move => Field, move: Move): Unit = {
-        playingField = moveToField(SaveMove(move, playingField.cells)) //todo: bessere Lösung für Safe-Move finden vllt. mit Monaden try
-        turn = doTurn
-        notifyObservers
-    }
-    def doAndPublish(toField: => Field) = {
-        playingField = toField
+
+    def doAndPublish(dothis: Move => Game, move: Move): Unit = {
+        game = dothis(move)
         notifyObservers
     }
 
-    val undoManager = new UndoManager[Field]
+    def doAndPublish(dothis: => Game) = {
+        game = dothis
+        notifyObservers
+    }
+
+
+
+
+    val undoManager = new UndoManager[Game]
+
     
     def setBuilding(move: Move): Field = undoManager.doPlacement(playingField, PutCommand(move))
     def undo: Field = undoManager.undoPlacement(playingField)
     def redo: Field = undoManager.redoPlacement(playingField)
 
-    def doTurn: Turn = Turn(turn.players, turn.turnsPlayed +1)
+    //def setPlayers(s: Array[String]): Array[Player] = for(name <- s) yield Player(name, 0)
 
-    override def toString = playingField.toString + turn.toString
+    override def toString = game.toString
 }
 
 // ---------------------------------------------------------------------------------------------------------------------

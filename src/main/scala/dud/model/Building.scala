@@ -9,8 +9,6 @@ trait House extends Building:
     def toString(): String
 
 
-
-
 // -------------------------------------------- Factory für Building ---------------------------------------------------
 
 

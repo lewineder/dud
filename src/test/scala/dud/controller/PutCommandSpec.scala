@@ -1,4 +1,5 @@
-package dud.controller
+/*
+
 
 import dud.model.{Building, Field, Move}
 import dud.util.Observer
@@ -20,3 +21,5 @@ class PutCommandSpec extends AnyWordSpec {
     }
   }
 }
+
+*/

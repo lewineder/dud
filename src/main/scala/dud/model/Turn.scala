@@ -5,32 +5,25 @@ import dud.model.GameState
 
 import scala.runtime.RichInt
 
-case class Turn(players: Array[Player], turnsPlayed: Int) extends Stateable:
-  def this(p: Array[String], i: Int) = this(players = Array[Player](), turnsPlayed = i) //todo: braucht noch Arbeit hier sollten eigentlich die Player einmal upgedatet werden
+case class Turn(turnsPlayed: Int) extends Stateable:
 
+  //---------------------------------------------- Strategy von State-Event --------------------------------------------
+  override def handle(event: Event): Option[GameState] =
+    event match {
+      case init: InitNew => gamestate = Some(Starting(this))
 
-  val players2: Array[Player] = Array[Player](Player("Rod", 2), Player("Farin", 1), Player("Bela", 4)) //todo: das hier wir nicht gebraucht
+      case p1: P1next => gamestate = Some(Player1(this))
+      case p2: P2next => gamestate = Some(Player2(this))
+      case p3: P3next => gamestate = Some(Player3(this))
+      case p4: P4next => gamestate = Some(Player4(this))
 
-  //------------------------------------------------- State von Event -------------------------------------------------
-  override def handle(e: Event): Option[GameState] =
-    e match {
-      case start: Starting => gamestate = Some(Starting(this))
-      case play: Playable => gamestate = Some(Playable(this))
-      case interrupt: Interrupted => gamestate = Some(Interrupted(this))
-      case finish: Finished => gamestate = Some(Finished(this))
-      case _ => None
+      case stop: Interrupt => gamestate = Some(Interrupted(this))
+      case fin: End => gamestate = Some(Finished(this))
     }
     gamestate
 
   // -------------------------------------------------------------------------------------------------------------------
 
-
-  override def toString(): String = {  //todo: Kann man auch noch schöner machen
-    /*for (state <- gamestate) yield state match {
-      case Some(s) => s.toString + players2.toString
-      case _ => players2.toString
-    }*/
-
-    "\n\n" + (for (p <- players2) yield p.toString).mkString("\n")
-  } //todo: braucht noch arbeit (sollte eigentlich die richtigen Player ausgeben, nicht die vals, die müssen aber von TUI und COntroller zuerst upgedatet und initialisiert
-    //todo: ausserdem funktioniert die for-Schleife mit den Option-Monaden nicht)
+  override def toString(): String = {
+    gamestate.get.toString()
+  }

@@ -4,12 +4,13 @@ package dud.util
 
 trait Event
 
-case class ResumeGame() extends Event
-case class StartGame() extends Event
-case class InterruptGame() extends Event
-case class EndGame() extends Event
+case class P1next() extends Event
+case class P2next() extends Event
+case class P3next() extends Event
+case class P4next() extends Event
 
-case class LoseGame() extends Event
-case class WinGame() extends Event
+case class InitNew() extends Event
+case class Interrupt() extends Event
+case class End() extends Event
 
 // --------------------------------------------------------------------------------------------------------------------
