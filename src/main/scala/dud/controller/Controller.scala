@@ -1,27 +1,44 @@
 package dud
 package controller
 
-import model.{Move, Building, Field}
-import util.Observable
-import util.Command
-import util.UndoManager
+import model.{Building, Field, Game, GameState, Move, Player, Turn}
+import util.*
 
-case class Controller(var playingField: Field) extends Observable{
+import scala.language.postfixOps
 
-    val undoManager = new UndoManager[Field]
-    
-    def doAndPublish(doThis: Move => Field, move: Move): Unit = {
-        playingField = doThis(move)
+
+
+// ---------------------------------------------------Controller ------------------------------------------------------
+
+case class Controller(var game: Game) extends Observable{
+
+    def handle(event: Event): Option[GameState] =
+        game.handle(event)
+
+
+    def doAndPublish(dothis: Move => Game, move: Move): Unit = {
+        game = dothis(move)
         notifyObservers
     }
-    def doAndPublish(doThis: => Field) = {
-        playingField = doThis
+
+    def doAndPublish(dothis: => Game) = {
+        game = dothis
         notifyObservers
     }
-    def setBuilding(move: Move): Field = undoManager.doPlacement(playingField, PutCommand(move))
+
+
+
+
+    val undoManager = new UndoManager[Game]
+
     
-    def undo: Field = undoManager.undoPlacement(playingField)
-    def redo: Field = undoManager.redoPlacement(playingField)
-    
-    override def toString = playingField.toString
+    def setBuilding(move: Move): Game = undoManager.doPlacement(game, PutCommand(move))
+    def undo: Game = undoManager.undoPlacement(game)
+    def redo: Game = undoManager.redoPlacement(game)
+
+    //def setPlayers(s: Array[String]): Array[Player] = for(name <- s) yield Player(name, 0)
+
+    override def toString = game.toString
 }
+
+// ---------------------------------------------------------------------------------------------------------------------

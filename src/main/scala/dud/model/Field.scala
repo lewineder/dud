@@ -1,7 +1,9 @@
 package dud.model
 
+//------------------------------------------------------------- Private --------------------------------------------------
+//tested
 case class Field(cells: Array[Array[Building]]) {
-    def this(sx: Int, sy: Int, filling: Building) = this(PhantomPlayer(Array.tabulate(sx,sy) { (row, col) => filling}))
+    def this(sx: Int, sy: Int, filling: Building) = this(Array.tabulate(sx,sy) { (row, col) => filling})
 
     val row: Int = cells.length
     val col: Int = cells(0).length
@@ -19,19 +21,21 @@ case class Field(cells: Array[Array[Building]]) {
         } yield skip(a, j+col*5*i , col*5*(i+1), 5)
 
         val colNumber = for {i <- 1 to row
-            } yield output(0 + 5*(i-1)) + "\n" + output(1 + 5*(i-1)) + "\n" + output(2+5*(i-1)) + "     " + i.toString + "\n" + output(3+5*(i-1))+ "\n" + output(4+5*(i-1)) + "\n"
+                             } yield output(0 + 5*(i-1)) + "\n" + output(1 + 5*(i-1)) + "\n" + output(2+5*(i-1)) + "     " + i.toString + "\n" + output(3+5*(i-1))+ "\n" + output(4+5*(i-1)) + "\n"
         val rowNumber = for {i <- 1 to col
-            } yield " "*5 + i.toString + " " * 6
+                             } yield " "*5 + i.toString + " " * 6
 
         "\n" + rowNumber.mkString("") + "\n\n" + colNumber.toList.mkString("")
     }
 
-    private def skip(l: List[String], start: Int, end: Int, n: Int): String = {
-        val skip = for (step <- Range(start, end, n)) 
+    def skip(l: List[String], start: Int, end: Int, n: Int): String = {
+        val skip = for (step <- Range(start, end, n))
             yield l(step)
         skip.mkString(" ")
     }
 
+//--------------------------------------------------------------------- Public ----------------------------------------
+//tested
     def setBuilding(row: Int, col: Int, Building: Building): Field = copy(cells.updated(row, cells(row).updated(col, Building)))
     def getBuilding(x: Int, y: Int): Building = cells(x)(y)
 }
