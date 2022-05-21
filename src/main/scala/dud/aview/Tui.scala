@@ -18,7 +18,6 @@ class Tui(controller: Controller) extends Observer{
         getInputAndPrintLoop()
 
     def getInputAndPrintLoop(): Unit =
-
         controller.handle(P1next())
         getInputLine(readLine) match
             case None =>
@@ -40,12 +39,12 @@ class Tui(controller: Controller) extends Observer{
 
     //-----------------------------------------Option für some/none --------------------------------------------------
 
-
-    private def toMove(input: String): Try[Move] = Try {
+    //private
+    def toMove(input: String): Try[Move] = Try {
         val split = input.split(" ")
         val name = split(2)
         val building = Building(name)
-        SaveMove(Move(split(0).toInt - 1,split(1).toInt - 1, building), controller.game.field.cells)
+        Move(split(0).toInt - 1,split(1).toInt - 1, building)
     }
 
     def getInputLine(input: String): Option[Move] =

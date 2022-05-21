@@ -15,27 +15,27 @@ class FieldSpec extends AnyWordSpec {
       }
     }
       "filled with streets" should {
+        val white ="\u001b[0m"
+        val color = "\u001b[33m"
         val field1 = new Field(1, 1, Building("S1"))
         val field2 = new Field(1, 1, Building("H1"))
         "have Buidlings as String" in {
           field1.toString should be("\n     1      \n\n+---------+\n" +
             "!_________!\n" + "___________     1\n" + "|         |\n" + "+---------+\n")
-          field2.toString should be("\n     1      \n\n+---------+\n" +
-            "|    ,^¦  |\n"+ "|   /# #\\ |     1\n" + "|   |# 1| |\n" + "+---------+\n")
+          field2.toString should be("\n     1      \n\n+---------+\n" + "|    " + color + ",^¦" + white  + "  |\n"+ "|   " + color +
+            "/# #\\" + white  + " |     1\n" + "|   " + color + "|# 1|" + white  + " |\n" + "+---------+\n")
         }
       }
     }
-    /*
     "A private skip Method" when  {
       "called with nothing" should {
         val list1 = List[String](" ")
-        val field1 = new Field(1, 1, Building.Empty)
+        val field1 = new Field(1, 1, Building("Empty"))
         "return a String like:" in {
           Field.skip(list1, 1, 1, 1) should be (" ")
         }
       }
     }
-    */
     "A setBuilding Method" when {
       "called with nothing" should {
         val field1 = new Field(1, 1, Building("S1"))

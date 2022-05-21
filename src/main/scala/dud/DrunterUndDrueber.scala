@@ -22,7 +22,7 @@ import scala.io.StdIn.readLine
 
 
 
-    val turn = Turn(0) //todo: Könnte Spielerzahl noch dynamisch machen
+    val turn = Turn(0)
     val game = Game(field, player, turn)
     val controller = Controller(game)
     val tui = Tui(controller)

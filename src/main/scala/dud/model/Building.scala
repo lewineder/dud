@@ -40,6 +40,8 @@ private class Haus4(color: String) extends House:
 private class Empty() extends Building:
     override def toString: String = "+---------+\n" + "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n"
 
+
+/*
 private class ERROR(color: String) extends Building:
     override def toString: String = color + " E R R O R "+ white + "\n" + color + " Kein Feld " + white  + "\n" + color +
       " gefunden  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
@@ -47,7 +49,7 @@ private class ERROR(color: String) extends Building:
 private class NOSUCHBUILDING(color: String) extends Building:
     override def toString: String = color + "   Kein   "+ white + "\n" + color + "  solches  " + white  + "\n" + color +
       "  Gebäude  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
-
+*/
 
 
 object Building {
@@ -60,8 +62,11 @@ object Building {
         case "H3" => new Haus3("\u001b[31m")
         case "H4" => new Haus4("\u001b[36m")
         case "Empty" => new Empty()
+
+        /*
         case "ERROR" => new ERROR("\u001b[31m")
         case _ => new NOSUCHBUILDING("\u001b[31m")
+        */
     }
 }
 

@@ -1,8 +1,8 @@
-/*
+package dud;
+package controller;
 
-
-import dud.model.{Building, Field, Move}
-import dud.util.Observer
+import dud.model.{Building, Field, Game, Move, Player, Turn}
+import dud.util.*
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -22,4 +22,4 @@ class PutCommandSpec extends AnyWordSpec {
   }
 }
 
-*/
+
