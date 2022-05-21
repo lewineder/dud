@@ -32,7 +32,7 @@ class FieldSpec extends AnyWordSpec {
         val list1 = List[String](" ")
         val field1 = new Field(1, 1, Building("Empty"))
         "return a String like:" in {
-          Field.skip(list1, 1, 1, 1) should be (" ")
+          field1.skip(list1, 1, 1, 1) should be ("")
         }
       }
     }

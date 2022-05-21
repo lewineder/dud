@@ -22,15 +22,15 @@ class TuiSpec extends AnyWordSpec {
       tui.getInputLine("z") should be(None)
     }
     "recognize the input 1 1 S1 as switch of an empty field to field (S1)" in {
-      tui.getInputLine("1 1 S1") should be(Some(Move(0, 0, Building("S1"))))
+      tui.getInputLine("1 1 S1").toString should be(Some(Move(0, 0, Building("S1"))).toString)
     }
     "and following lines:" in {
-      tui.getInputLine("1 1 S2") should be(Some(Move(0, 0, Building("S2"))))
-      tui.getInputLine("1 1 S3") should be(Some(Move(0, 0, Building("S3"))))
-      tui.getInputLine("1 1 H1") should be(Some(Move(0, 0, Building("H1"))))
-      tui.getInputLine("1 1 H2") should be(Some(Move(0, 0, Building("H2"))))
-      tui.getInputLine("1 1 H3") should be(Some(Move(0, 0, Building("H3"))))
-      tui.getInputLine("1 1 H4") should be(Some(Move(0, 0, Building("H4"))))
+      tui.getInputLine("1 1 S2").toString should be (Some(Move(0, 0, Building("S2"))).toString)
+      tui.getInputLine("1 1 S3").toString should be (Some(Move(0, 0, Building("S3"))).toString)
+      tui.getInputLine("1 1 H1").toString should be (Some(Move(0, 0, Building("H1"))).toString)
+      tui.getInputLine("1 1 H2").toString should be (Some(Move(0, 0, Building("H2"))).toString)
+      tui.getInputLine("1 1 H3").toString should be (Some(Move(0, 0, Building("H3"))).toString)
+      tui.getInputLine("1 1 H4").toString should be (Some(Move(0, 0, Building("H4"))).toString)
     }
 
     val move = new Move(0, 0, Building("S1"))

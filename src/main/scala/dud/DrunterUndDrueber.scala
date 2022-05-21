@@ -17,7 +17,8 @@ import scala.io.StdIn.readLine
         val player3 = scala.io.StdIn.readLine()
     println("Spielernamen Spieler 4 eingeben: ")
         val player4 = scala.io.StdIn.readLine()
-    val player = Array(Player(player1, 0), Player(player2, 0), Player(player3, 0), Player(player4, 0))
+    val startBuilding = 3
+    val player = Array(Player(player1, startBuilding), Player(player2, startBuilding), Player(player3, startBuilding), Player(player4, startBuilding))
 
 
 

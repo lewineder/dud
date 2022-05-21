@@ -68,6 +68,13 @@ object Building {
         case _ => new NOSUCHBUILDING("\u001b[31m")
         */
     }
+
+
+    /*
+    def unapply(x : String) : Option[String] =
+        val strBuild: String = x
+        Some(strBuild)
+    */
 }
 
 // -----------------------------------------------------------------------------------------------------------------------
