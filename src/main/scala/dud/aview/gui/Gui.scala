@@ -15,6 +15,21 @@ class CellClicked(val row: Int, val column: Int) extends Event
 
 class Gui(observable: Controller) extends Frame {
 
+  listenTo(observable)
+
+  title = "Willkommen zu drunter und drüber"
+
+
+  def testPanel = new FlowPanel {
+  }
+
+
+  contents = new BorderPanel {
+    add(testPanel, BorderPanel.Position.North)
+  }
+
+  visible = true
+
 
 }
 
