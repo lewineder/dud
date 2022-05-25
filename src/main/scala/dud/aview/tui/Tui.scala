@@ -1,3 +1,4 @@
+/*
 package dud
 package aview
 
@@ -81,3 +82,4 @@ class Tui(controller: Controller) extends Observer{
 
     override def update: Unit = println(controller.toString)
 }
+*/

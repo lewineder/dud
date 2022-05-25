@@ -21,7 +21,7 @@ case class Game (field: Field, players: Array[Player], turn: Turn){
   def fitMove(move: Move): Boolean = {
     possibleMove.contains(move)
 */
-  def handle(event: Event): Option[GameState] =
+  def handle(event: GameEvent): Option[GameState] =
     turn.handle(event)
 
   def playersToString: String =

@@ -2,13 +2,12 @@ package dud
 
 import dud.model.{Field, Game, Building, Turn, Player}
 import dud.controller.Controller
-import dud.aview.Tui
 import scala.io.StdIn.readLine
 
 
 @main def run(sx: Int = 6, sy: Int = 6): Unit =
+    /*
     println("> Willkommen zu drunter und drüber!")
-    val field = new Field(sx,sy,Building("Empty"))
     println("Spielernamen Spieler 1 eingeben: ")
         val player1 = scala.io.StdIn.readLine()
     println("Spielernamen Spieler 2 eingeben: ")
@@ -17,14 +16,14 @@ import scala.io.StdIn.readLine
         val player3 = scala.io.StdIn.readLine()
     println("Spielernamen Spieler 4 eingeben: ")
         val player4 = scala.io.StdIn.readLine()
-    val startBuilding = 3
-    val player = Array(Player(player1, startBuilding), Player(player2, startBuilding), Player(player3, startBuilding), Player(player4, startBuilding))
-
-
-
-
+    */
+    val startBuilding = 1
+    val field = new Field(sx,sy,Building("Empty"))
+    val player = Array(Player("1", startBuilding), Player("2", startBuilding), Player("3", startBuilding), Player("4", startBuilding))
     val turn = Turn(0)
     val game = Game(field, player, turn)
     val controller = Controller(game)
-    val tui = Tui(controller)
-    tui.run
+    //val tui = Tui(controller)
+    //tui.run
+    val gui = new Gui(controller)
+
