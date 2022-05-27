@@ -63,8 +63,8 @@ class Gui(controller: Controller) extends Frame with Observer {
   }
 
   def box = new FlowPanel{
-    contents += new Button(Action("Undo") {controller.undo})
-    contents += new Button(Action("Redo") {controller.redo})   }
+    contents += new Button(Action("Undo") {controller.doAndPublish(controller.redo)})
+    contents += new Button(Action("Redo") {controller.doAndPublish(controller.undo)})   }
 
   visible = true
   pack()

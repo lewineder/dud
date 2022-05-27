@@ -28,8 +28,8 @@ import scala.io.StdIn.readLine
     val controller = Controller(game)
     val gui = new Gui(controller)
     gui.repaint()
-    //val tui = Tui(controller)
-    //tui.run
+    val tui = Tui(controller)
+    tui.run
     
 
 
