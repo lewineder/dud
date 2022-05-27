@@ -1,5 +1,5 @@
 package dud
-
+import dud.aview.Tui
 import dud.aview.gui.Gui
 import dud.model.{Building, Field, Game, Player, Turn}
 import dud.controller.Controller
@@ -20,12 +20,13 @@ import scala.io.StdIn.readLine
         val player4 = scala.io.StdIn.readLine()
     */
     val startBuilding = 1
-    val field = new Field(sx,sy,Building("S1"))
+    val field = new Field(sx,sy,Building("Empty"))
+    field.init
     val player = Array(Player("1", startBuilding), Player("2", startBuilding), Player("3", startBuilding), Player("4", startBuilding))
     val turn = Turn(0)
     val game = Game(field, player, turn)
     val controller = Controller(game)
-    //val tui = Tui(controller)
-    //tui.run
-    val gui = new Gui(controller)
+    val tui = Tui(controller)
+    tui.run
+    //val gui = new Gui(controller)
 

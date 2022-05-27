@@ -76,9 +76,13 @@ class Gui(controller: Controller) extends Frame with Observer {
         for (j <- 0 to y) {
           val building = controller.game.field.getBuilding(i,j)
           val b = new CellButton(i,j,building.map)
-          if (building.isInstanceOf[House])
+          if (building.name == "Empty")
+            b.background = Color.white
+          else if (building.isInstanceOf[House])
             b.background = building.asInstanceOf[House].colorM
+          else {b.background = Color.gray}
           contents += b
+          
         }
       }    
 
@@ -86,18 +90,26 @@ class Gui(controller: Controller) extends Frame with Observer {
       listenTo(mouse.clicks)
       reactions += {
         case MouseClicked(src, pt, mod, clicks, props) => {
-          clicks match {
-            case 1 => controller.doAndPublish(controller.setBuilding, Move(x,y,Building("H1")))
-            case 2 => controller.doAndPublish(controller.setBuilding, Move(x,y,Building("H2")))
+          val r = Dialog.showInput(contents.head, "Strasse", initial="S1")
+          r match {
+            case Some(r) => controller.doAndPublish(controller.setBuilding, Move(x,y,Building(r)))
+            case None => 
           }
         }
-      }
+        case KeyTyped(_,c,_,_) =>
+          c match {
+            case '1' => controller.doAndPublish(controller.setBuilding, Move(x,y,Building("S1")))
+            case '2' => controller.doAndPublish(controller.setBuilding, Move(x,y,Building("S2")))
+            case '3' => controller.doAndPublish(controller.setBuilding, Move(x,y,Building("S3")))
+          }
+        }
+      
   def turnLabel = new GridPanel(4, 1) {
     for (i <- controller.game.players)
       contents += new Label(i.toString)
   }
 
   override def update(e: util.Event): Unit = { e match
-    case Event.FieldChanged => repaint()
+    case Event.FieldChanged => new Gui(controller)
   }
 }

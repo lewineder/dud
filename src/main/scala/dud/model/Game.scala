@@ -34,7 +34,6 @@ case class Game (field: Field, players: Array[Player], turn: Turn){
     copy(field.setBuilding(row, col, building), players, turn)
 
 
-
   override def toString =
     field.toString + "\n" + playersToString + "\n" + turn.toString
 }
