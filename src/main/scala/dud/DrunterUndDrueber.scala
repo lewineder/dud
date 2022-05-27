@@ -20,7 +20,7 @@ import scala.io.StdIn.readLine
         val player4 = scala.io.StdIn.readLine()
     */
     val startBuilding = 1
-    val field = new Field(sx,sy,Building("Empty"))
+    val field = new Field(sx,sy,Building("S1"))
     val player = Array(Player("1", startBuilding), Player("2", startBuilding), Player("3", startBuilding), Player("4", startBuilding))
     val turn = Turn(0)
     val game = Game(field, player, turn)

@@ -60,19 +60,6 @@ class Tui(controller: Controller) extends Observer{
                     case Success(m) => Some(m)
                     case Failure(n) => println(s"Falsche Eingabe: $n"); None
                 }
-/*
-        object PhantomPlayer {
-            var strategy = if (Random.nextInt() % 2 == 0) strategy0 else strategy1
-            def strategy0 = {
-                val moveFirst = controller.game.possibleMove(0)
-                controller.doAndPublish(controller.setBuilding, new Move(moveFirst._1, moveFirst._2, Building("S2")))
-            }
-            def strategy1 = {
-                val moveSecond = controller.game.possibleMove(1)
-                controller.doAndPublish(controller.setBuilding, new Move(moveSecond._1, moveSecond._2, Building("S2")))
-            }
-        }
-*/
 
 
 

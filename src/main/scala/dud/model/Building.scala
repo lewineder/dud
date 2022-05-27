@@ -1,43 +1,69 @@
 package dud.model
 
+import java.awt.Color
+
 trait Building:
-    def toString(): String
+    def map: String
+    def name: String
+    def toString: String
     val white = "\u001b[0m"
 
 
 trait House extends Building:
-    def toString(): String
+    def colorM: Color
+    def name: String
+    def toString: String
 
 
 // -------------------------------------------- Factory für Building ---------------------------------------------------
 
 
-private class Strasse1() extends Building:
+class Strasse1() extends Building:
+    override def map: String = "<--->"
+    override def name: String = "S1"
     override def toString: String = "+---------+\n" + "!_________!\n" + "___________\n" + "|         |\n" + "+---------+\n"
 
-private class Strasse2() extends Building:
+class Strasse2() extends Building:
+    override def map: String = "< ^ >"
+    override def name: String = "S2"
     override def toString: String = "+--| ¦ |--+\n" + "!__| ¦ |__!\n" + "___     ___\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
 
-private class Strasse3() extends Building:
+class Strasse3() extends Building:
+    override def map: String = "^"
+    override def name: String = "S3"
     override def toString: String = "+--| ¦ |--+\n" + "|  | ¦ |o |\n" + "|  | ¦ || |\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
 
-private class Haus1(color: String) extends House:
+class Haus1(color: String) extends House:
+    override def map: String = " "
+    def colorM: Color = Color.red
+    override def name: String = "H1"
     override def toString: String = "+---------+\n" + "|    " + color + ",^¦" + white  + "  |\n"+ "|   " + color +
       "/# #\\" + white  + " |\n" + "|   " + color + "|# 1|" + white  + " |\n" + "+---------+\n"
 
-private class Haus2(color: String) extends House:
+class Haus2(color: String) extends House:
+    override def map: String = " "
+    def colorM: Color = Color.blue
+    override def name: String = "H2"
     override def toString: String = "+---------+\n" + "|   " + color + "__" + white  + "    |\n" + "|  " + color +
       "/#  \\" + white  + "  |\n" + "|  " + color + "|2 ¦|" + white  + "  |\n" + "+---------+\n" + white
 
-private class Haus3(color: String) extends House:
+class Haus3(color: String) extends House:
+    override def map: String = " "
+    def colorM: Color = Color.green
+    override def name: String = "H2"
     override def toString: String = "+---------+\n" + "| " + color + "___" + white  + "     |\n" + "| " + color +
       "|# \\_" + white  + "   |\n" +"| " + color + "|# 3 |" + white  + "  |\n" + "+---------+\n" + white
 
-private class Haus4(color: String) extends House:
+class Haus4(color: String) extends House:
+    override def map: String = " "
+    override def colorM: Color = Color.yellow
+    override def name: String = "H4"
     override def toString: String = "+---------+\n" + "|     " + color + "~°" + white  + "  |\n" + "|  " + color +
       ",--|¦." + white  + " |\n" + "|  " + color + "|# 4 |" + white  + " |\n" + "+---------+\n" + white
 
-private class Empty() extends Building:
+class Empty() extends Building:
+    override def map: String = " "
+    override def name: String = "Empty"
     override def toString: String = "+---------+\n" + "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n"
 
 
@@ -68,13 +94,6 @@ object Building {
         case _ => new NOSUCHBUILDING("\u001b[31m")
         */
     }
-
-
-    /*
-    def unapply(x : String) : Option[String] =
-        val strBuild: String = x
-        Some(strBuild)
-    */
 }
 
 // -----------------------------------------------------------------------------------------------------------------------

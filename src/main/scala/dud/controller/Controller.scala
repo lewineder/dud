@@ -3,30 +3,26 @@ package controller
 
 import model.{Building, Field, Game, GameState, Move, Player, Turn}
 import controller.*
-import util.{GameEvent, UndoManager}
+import util.*
 
 import scala.swing.Publisher
 import scala.language.postfixOps
 
-
-
-
 // ---------------------------------------------------Controller ------------------------------------------------------
 
-case class Controller(var game: Game) extends Publisher{
-
+case class Controller(var game: Game) extends Observable{
     def handle(event: GameEvent): Option[GameState] =
         game.handle(event)
 
 
     def doAndPublish(dothis: Move => Game, move: Move): Unit = {
         game = dothis(move)
-        publish(FieldChanged())
+        notifyObservers(Event.FieldChanged)
     }
 
     def doAndPublish(dothis: => Game) = {
         game = dothis
-        publish(FieldChanged())
+        notifyObservers(Event.FieldChanged)
     }
 
 
