@@ -17,12 +17,13 @@ case class Controller(var game: Game) extends Observable{
 
     def doAndPublish(dothis: Move => Game, move: Move): Unit = {
         game = dothis(move)
-        notifyObservers(Event.FieldChanged)
+        notifyObservers
+        //notifyObservers(Event.FieldChanged)
     }
 
     def doAndPublish(dothis: => Game) = {
         game = dothis
-        notifyObservers(Event.FieldChanged)
+        notifyObservers
     }
 
 

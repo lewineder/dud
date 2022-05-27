@@ -22,7 +22,7 @@ import java.awt.ComponentOrientation
 class Gui(controller: Controller) extends Frame with Observer {
   controller.add(this)
   title = "Willkommen zu drunter und drüber"
-  preferredSize = new Dimension(500,500)
+  preferredSize = new Dimension(controller.game.field.col * 80,controller.game.field.row * 80)
   val field = controller.game.field
   contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
@@ -48,7 +48,7 @@ class Gui(controller: Controller) extends Frame with Observer {
     val p4 = Dialog.showInput(contents.head, "Spieler4", initial="Name")
 
     r match {
-      case Some(s) => println(s)
+      case Some(s) => 
       case None => 
     }
   }
@@ -108,8 +108,18 @@ class Gui(controller: Controller) extends Frame with Observer {
     for (i <- controller.game.players)
       contents += new Label(i.toString)
   }
-
+/*
   override def update(e: util.Event): Unit = { e match
-    case Event.FieldChanged => new Gui(controller)
+    case Event.FieldChanged => repaint()//new Gui(controller)repaint()
+  }
+*/
+  var a = 0
+  override def update: Unit = {
+    contents = new BorderPanel {
+    add(box, BorderPanel.Position.North)
+    add(new Draw(field.col - 1,field.row - 1), BorderPanel.Position.Center)
+    add(turnLabel, BorderPanel.Position.South)
+    repaint()
+  }
   }
 }

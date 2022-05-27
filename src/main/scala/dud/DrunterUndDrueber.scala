@@ -26,7 +26,10 @@ import scala.io.StdIn.readLine
     val turn = Turn(0)
     val game = Game(field, player, turn)
     val controller = Controller(game)
-    val tui = Tui(controller)
-    tui.run
-    //val gui = new Gui(controller)
+    val gui = new Gui(controller)
+    gui.repaint()
+    //val tui = Tui(controller)
+    //tui.run
+    
+
 
