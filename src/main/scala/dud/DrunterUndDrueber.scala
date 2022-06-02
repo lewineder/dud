@@ -8,7 +8,7 @@ import scala.io.StdIn.readLine
 
 
 @main def run(sx: Int = 6, sy: Int = 6): Unit =
-
+    /*
     println("> Willkommen zu drunter und drüber!")
     println("Spielernamen Spieler 1 eingeben: ")
         val player1 = scala.io.StdIn.readLine()
@@ -18,7 +18,7 @@ import scala.io.StdIn.readLine
         val player3 = scala.io.StdIn.readLine()
     println("Spielernamen Spieler 4 eingeben: ")
         val player4 = scala.io.StdIn.readLine()
-
+    */
     val startBuilding = 1
     val field = new Field(sx,sy,Building("Empty"))
     field.init
