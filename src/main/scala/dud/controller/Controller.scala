@@ -40,5 +40,3 @@ case class Controller(var game: Game) extends Observable{
 
     override def toString = game.toString
 }
-
-// ---------------------------------------------------------------------------------------------------------------------

@@ -20,9 +20,7 @@ import javax.swing.JTextArea
 import java.awt.ComponentOrientation
 
 class Gui(controller: Controller) extends Frame with Observer {
-
   controller.add(this)
-
   title = "Willkommen zu drunter und drüber"
   preferredSize = new Dimension(controller.game.field.col * 80,controller.game.field.row * 80)
   val field = controller.game.field
@@ -50,7 +48,7 @@ class Gui(controller: Controller) extends Frame with Observer {
     val p4 = Dialog.showInput(contents.head, "Spieler4", initial="Name")
 
     r match {
-      case Some(s) =>
+      case Some(s) => 
       case None => 
     }
   }
@@ -123,5 +121,5 @@ class Gui(controller: Controller) extends Frame with Observer {
     add(turnLabel, BorderPanel.Position.South)
     repaint()
   }
-}
+  }
 }

@@ -15,7 +15,7 @@ case class Field(cells: Array[Array[Building]]) {
         cells(rd(i)/col)(rd(i) % col) = getBuild(i%4)
         }
     
-    def getBuild: Array[Building] = Array(Building("H1"), Building("H2"), Building("H3"), Building("H4"))
+    def getBuild = Array(Building("H1"), Building("H2"), Building("H3"), Building("H4"))
 
     override def toString = {
         val comb = for {
