@@ -21,7 +21,7 @@ case class Game (field: Field, players: Array[Player], turn: Turn){
   def fitMove(move: Move): Boolean = {
     possibleMove.contains(move)
 */
-  def handle(event: Event): Option[GameState] =
+  def handle(event: GameEvent): Option[GameState] =
     turn.handle(event)
 
   def playersToString: String =
@@ -32,7 +32,6 @@ case class Game (field: Field, players: Array[Player], turn: Turn){
 
   def setBuilding(row: Int, col: Int, building: Building) : Game =
     copy(field.setBuilding(row, col, building), players, turn)
-
 
 
   override def toString =

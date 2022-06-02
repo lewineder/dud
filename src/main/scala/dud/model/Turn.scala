@@ -8,7 +8,7 @@ import scala.runtime.RichInt
 case class Turn(turnsPlayed: Int) extends Stateable:
 
   //---------------------------------------------- Strategy von State-Event --------------------------------------------
-  override def handle(event: Event): Option[GameState] =
+  override def handle(event: GameEvent): Option[GameState] =
     event match {
       case init: InitNew => gamestate = Some(Starting(this))
 

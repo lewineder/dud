@@ -4,7 +4,7 @@ import scala.language.postfixOps
 
 case class Player(val name: String, var remaining: Int):
   
-  def minRemainig = copy(name, remaining - 1)
+  def minRemainig: Player = copy(name, remaining - 1)
   
   def getRemaining: Int = remaining
   

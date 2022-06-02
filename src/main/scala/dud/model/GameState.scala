@@ -1,18 +1,18 @@
 package dud.model
 
-import dud.util.Event
+import dud.util.GameEvent
 import dud.model.Turn
 
 
 //------------------------------------------- Factory für State ------------------------------------------------------
 
 
-            //-------------------- Option für some/none in State + Event ---------------------
+            //-------------------- Option für some/none in State + GameEvent ---------------------
 
 trait Stateable:
 
   var gamestate: Option[GameState] = None //Status zum mitgeben
-  def handle(e: Event): Option[GameState] //handle für TUI
+  def handle(e: GameEvent): Option[GameState] //handle für TUI
 
             //---------------------------------------------------------------------------------
 

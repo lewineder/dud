@@ -3,10 +3,20 @@ package dud.model
 //------------------------------------------------------------- Private --------------------------------------------------
 //tested
 case class Field(cells: Array[Array[Building]]) {
+
     def this(sx: Int, sy: Int, filling: Building) = this(Array.tabulate(sx,sy) { (row, col) => filling})
 
     val row: Int = cells.length
     val col: Int = cells(0).length
+    
+    def init : Unit =
+        val rd = scala.util.Random.shuffle(0.until (col * row))
+        for (i <- 0 until (((row * col) / 20) * 4)) {
+        cells(rd(i)/col)(rd(i) % col) = getBuild(i%4)
+        }
+    
+    def getBuild: Array[Building] = Array(Building("H1"), Building("H2"), Building("H3"), Building("H4"))
+
     override def toString = {
         val comb = for {
             c <- cells
