@@ -3,11 +3,11 @@ package aview
 package gui
 
 import controller_component.*
-import dud.controller_component.BaseIplt.Controller
-import dud.model.*
-import dud.model.game_component.BaseIplt.Building
-import dud.model.move_component.BaseIplt.Move
-import dud.util.{Event, Observer}
+import controller_component.BaseIplt.Controller
+import model.*
+import model.game_component.BaseIplt.Building
+import model.move_component.BaseIplt.Move
+import util.{Event, Observer}
 
 import java.lang.Math
 import scala.swing.*
@@ -70,11 +70,15 @@ class Gui(controller: Controller) extends Frame with Observer {
       sys.exit(0)
   }
 
-  def box = new FlowPanel{
-    contents += new Button(Action("Undo") {controller.doAndPublish(controller.redo)})
-    contents += new Button(Action("Redo") {controller.doAndPublish(controller.undo)})
-
-
+  def box = new FlowPanel {
+    contents += new Button(Action("Undo") {
+      controller.doAndPublish(controller.redo)
+    })
+    contents += new Button(Action("Redo") {
+      controller.doAndPublish(controller.undo)
+    })
+  }
+  
   visible = true
   pack()
   centerOnScreen()
@@ -100,13 +104,13 @@ class Gui(controller: Controller) extends Frame with Observer {
           number match {
           case 1 => controller.doAndPublish(controller.setBuilding, List(Move(x,y,Building("S2"))))
           case 2 => controller.doAndPublish(controller.setBuilding, List(Move(x - 1,y,Building("S2")), Move(x,y,Building("S3"))))
-          case 3 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x,y,Building("S1")), BaseIplt.Move(x,y + 1,Building("S2"))))
-          case 4 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y ,Building("S3")), BaseIplt.Move(x + 1,y,Building("S2"))))
-          case 5 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y - 1,Building("S2")), BaseIplt.Move(x ,y,Building("S1"))))         
-          case 6 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x + 2 ,y,Building("S2")), BaseIplt.Move(x + 1 ,y,Building("S4")), BaseIplt.Move(x,y,Building("S3"))))
-          case 7 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y - 2,Building("S2")), BaseIplt.Move(x ,y,Building("S1")), BaseIplt.Move(x ,y - 1,Building("S5"))))
-          case 8 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x - 2 ,y,Building("S2")), BaseIplt.Move(x ,y,Building("S3")), BaseIplt.Move(x - 1,y,Building("S4"))))
-          case 9 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move( x ,y + 2,Building("S2")), BaseIplt.Move(x ,y,Building("S1")), BaseIplt.Move(x, y + 1,Building("S5"))))
+          case 3 => controller.doAndPublish(controller.setBuilding, List(Move(x,y,Building("S1")), Move(x,y + 1,Building("S2"))))
+          case 4 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y ,Building("S3")), Move(x + 1,y,Building("S2"))))
+          case 5 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 1,Building("S2")), Move(x ,y,Building("S1"))))
+          case 6 => controller.doAndPublish(controller.setBuilding, List(Move(x + 2 ,y,Building("S2")), Move(x + 1 ,y,Building("S4")), Move(x,y,Building("S3"))))
+          case 7 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 2,Building("S2")), Move(x ,y,Building("S1")), Move(x ,y - 1,Building("S5"))))
+          case 8 => controller.doAndPublish(controller.setBuilding, List(Move(x - 2 ,y,Building("S2")), Move(x ,y,Building("S3")), Move(x - 1,y,Building("S4"))))
+          case 9 => controller.doAndPublish(controller.setBuilding, List(Move( x ,y + 2,Building("S2")), Move(x ,y,Building("S1")), Move(x, y + 1,Building("S5"))))
           case 0 => 
         }
       }
@@ -159,7 +163,7 @@ class Gui(controller: Controller) extends Frame with Observer {
     
       
   def turnLabel = new GridPanel(4, 1) {
-    for (i <- controller.game.players)
+    for (i <- controller.game.getPlayers())
       contents += new Label(i.toString)
   }
 

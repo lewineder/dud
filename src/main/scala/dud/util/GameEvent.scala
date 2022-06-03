@@ -1,6 +1,5 @@
-package dud.util
-
-import dud.util.GameEvent
+package dud
+package util
 
 //----------------------------------------------  State Pattern für Turn ---------------------------------------------
 

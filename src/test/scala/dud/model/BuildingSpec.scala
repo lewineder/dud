@@ -1,6 +1,7 @@
-package dud.model
+package dud
+package model
 
-import dud.model.BaseIplt.Building
+import game_component.BaseIplt.Building
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

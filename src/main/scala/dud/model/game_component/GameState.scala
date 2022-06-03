@@ -1,8 +1,8 @@
-package dud.model.game_component
+package dud
+package model.game_component
 
-import dud.model.GameState
-import dud.model.game_component.BaseIplt.Turn
-import dud.util.GameEvent
+import model.game_component.BaseIplt.Turn
+import util.GameEvent
 
 
 //------------------------------------------- Factory für State ------------------------------------------------------

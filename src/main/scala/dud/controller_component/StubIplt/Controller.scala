@@ -1,5 +1,5 @@
-package dud.controller_component
-package StubIplt
+package dud
+package controller_component.StubIplt
 
 import dud.model.game_component.GameInterface
 import dud.model.move_component.MoveInterface

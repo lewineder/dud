@@ -1,10 +1,10 @@
-package dud.model
-package game_component.BaseIplt
+package dud
+package model.game_component.BaseIplt
 
-import dud.model.game_component.GameState
-import dud.model.game_component.{Finished, Interrupted, Player1, Player2, Player3, Player4, Starting, Stateable}
-import dud.util.GameEvent
-
+import model.game_component.{Player1, Player2, Player3, Player4, Starting, Finished, Interrupted,Stateable}
+import model.game_component.GameState
+import util.*
+import util.GameEvent
 
 case class Turn(turnsPlayed: Int) extends Stateable :
 

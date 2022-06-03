@@ -1,22 +1,23 @@
-package dud.controller_component.BaseIplt
+package dud
+package controller_component.BaseIplt
 
-import dud.model.game_component.GameInterface
-import dud.model.move_component.MoveInterface
-import dud.model.game_component.GameState
-import dud.util.{GameEvent, Observable, UndoManager}
+import model.game_component.GameInterface
+import model.game_component.BaseIplt.Game
+import model.move_component.BaseIplt.Move
+import model.game_component.GameState
+import util.{GameEvent, Observable, UndoManager, Command}
 
 case class Controller(var game: GameInterface) extends Observable {
-  override def handle(event: GameEvent): Option[GameState] =
+  def handle(event: GameEvent): Option[GameState] =
     game.handle(event)
 
 
-  override def doAndPublish(dothis: List[MoveInterface] => GameInterface, move: List[MoveInterface]): Unit = {
+  def doAndPublish(dothis: List[Move] => GameInterface, move: List[Move]): Unit = {
     game = dothis(move)
     notifyObservers
-    //notifyObservers(Event.FieldChanged)
   }
 
-  override def doAndPublish(dothis: => GameInterface) = {
+  def doAndPublish(dothis: => GameInterface) = {
     game = dothis
     notifyObservers
   }
@@ -24,13 +25,11 @@ case class Controller(var game: GameInterface) extends Observable {
 
   val undoManager = new UndoManager[GameInterface]
 
-  override def setBuilding(move: List[MoveInterface]): GameInterface = undoManager.doPlacement(game, PutCommand(move))
+  def setBuilding(move: List[Move]): GameInterface = undoManager.doPlacement(game, PutCommand(move))
 
-  override def undo: GameInterface = undoManager.undoPlacement(game)
+  def undo: GameInterface = undoManager.undoPlacement(game)
 
-  override def redo: GameInterface = undoManager.redoPlacement(game)
-
-  //def setPlayers(s: Array[String]): Array[Player] = for(name <- s) yield Player(name, 0)
+  def redo: GameInterface = undoManager.redoPlacement(game)
 
   override def toString = game.toString
 }

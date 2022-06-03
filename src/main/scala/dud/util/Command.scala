@@ -1,6 +1,5 @@
-package dud.util
-
-import dud.util.Command
+package dud
+package util
 
 // ------------------------------------------------Undo Mechanismus --------------------------------------------------
 //tested
