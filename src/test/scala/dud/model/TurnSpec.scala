@@ -1,6 +1,7 @@
 package dud.model
 
-import dud.util.{P1next, P2next, P3next, P4next, InitNew, Interrupt, End}
+import dud.model.move_component.BaseIplt.Turn
+import dud.util.{End, InitNew, Interrupt, P1next, P2next, P3next, P4next}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

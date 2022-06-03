@@ -1,5 +1,6 @@
 package dud.model
 
+import dud.model.BaseIplt.Building
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

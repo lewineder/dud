@@ -1,5 +1,7 @@
 package dud.util
 
+import dud.util.GameEvent
+
 //----------------------------------------------  State Pattern für Turn ---------------------------------------------
 
 trait GameEvent

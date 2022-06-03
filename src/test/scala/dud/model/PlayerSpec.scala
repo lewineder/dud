@@ -1,7 +1,6 @@
 package dud.model
 
-
-
+import dud.model.move_component.BaseIplt.Player
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

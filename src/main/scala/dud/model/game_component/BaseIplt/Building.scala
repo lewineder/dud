@@ -1,4 +1,6 @@
-package dud.model
+package dud.model.game_component.BaseIplt
+
+import dud.model.*
 
 import java.awt.Color
 
@@ -82,17 +84,6 @@ class Empty() extends Building:
     override def toString: String = "+---------+\n" + "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n"
 
 
-/*
-private class ERROR(color: String) extends Building:
-    override def toString: String = color + " E R R O R "+ white + "\n" + color + " Kein Feld " + white  + "\n" + color +
-      " gefunden  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
-
-private class NOSUCHBUILDING(color: String) extends Building:
-    override def toString: String = color + "   Kein   "+ white + "\n" + color + "  solches  " + white  + "\n" + color +
-      "  Gebäude  " + white  + "\n" + color + "zurück  mit" + white  + "\n" + color + "  >> y <<  " + white + "\n"
-*/
-
-
 object Building {
     def apply(name: String) = name match {
         case "S1" => new Strasse1()
@@ -106,9 +97,5 @@ object Building {
         case "H4" => new Haus4("\u001b[36m")
         case "Empty" => new Empty()
 
-        /*
-        case "ERROR" => new ERROR("\u001b[31m")
-        case _ => new NOSUCHBUILDING("\u001b[31m")
-        */
     }
 }

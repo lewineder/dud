@@ -1,11 +1,11 @@
 package dud;
 package model;
 
+import dud.model.BaseIplt.{Building, Field, Game}
+import dud.model.move_component.BaseIplt.{Player, Turn}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-
 import util.*
-import model.Turn
 
 
 class GameSpec extends AnyWordSpec {

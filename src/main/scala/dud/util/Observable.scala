@@ -1,5 +1,7 @@
 package dud.util
 
+import dud.util.Observer
+
 trait Observer {
     //def update(e: Event): Unit
     def update: Unit

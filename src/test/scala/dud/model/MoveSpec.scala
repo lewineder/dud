@@ -1,7 +1,8 @@
 package dud;
 package model;
 
-import model.*;
+import dud.model.BaseIplt.{Building, Move}
+import model.*
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

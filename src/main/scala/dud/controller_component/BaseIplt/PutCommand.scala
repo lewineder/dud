@@ -1,10 +1,10 @@
-package dud
-package controller
+package dud.controller_component.BaseIplt
 
-import model.{Game, Move, Building}
+import dud.model.game_component.BaseIplt.{Building, Game}
+import dud.model.move_component.BaseIplt.Move
+import dud.util.Command
 
-import util.Command
-import util.UndoManager
+import scala.util.{Command, UndoManager}
 
 
 // ------------------------------------------ Undo-Mechanismus ------------------------------------------------------

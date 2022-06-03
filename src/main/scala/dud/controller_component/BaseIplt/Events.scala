@@ -1,5 +1,4 @@
-package dud.controller
-
+package dud.controller_component.BaseIplt
 
 import scala.swing.event.Event
 

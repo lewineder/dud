@@ -2,14 +2,16 @@ package dud
 package aview
 package gui
 
-import controller.*
-import util.Event
-import util.Observer
+import controller_component.*
+import dud.controller_component.BaseIplt.Controller
 import dud.model.*
+import dud.model.game_component.BaseIplt.Building
+import dud.model.move_component.BaseIplt.Move
+import dud.util.{Event, Observer}
+
 import java.lang.Math
 import scala.swing.*
 import java.awt.image.BufferedImage
-//import scala.swing.BorderPanel.Position.*
 import javax.imageio.ImageIO
 import java.io.File
 import event.*
@@ -29,8 +31,7 @@ import scala.swing.Font
 class Gui(controller: Controller) extends Frame with Observer {
   controller.add(this)
   title = "Willkommen zu drunter und drüber"
-  //preferredSize = new Dimension(controller.game.field.col * 80,controller.game.field.row * 80)
-  val field = controller.game.field
+  val field = controller.game.getField()
   contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
     add(new Draw(field.row - 1,field.col - 1), BorderPanel.Position.Center)
@@ -103,13 +104,13 @@ class Gui(controller: Controller) extends Frame with Observer {
           number match {
           case 1 => controller.doAndPublish(controller.setBuilding, List(Move(x,y,Building("S2"))))
           case 2 => controller.doAndPublish(controller.setBuilding, List(Move(x - 1,y,Building("S2")), Move(x,y,Building("S3"))))
-          case 3 => controller.doAndPublish(controller.setBuilding, List(Move(x,y,Building("S1")), Move(x,y + 1,Building("S2"))))
-          case 4 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y ,Building("S3")), Move(x + 1,y,Building("S2"))))
-          case 5 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 1,Building("S2")), Move(x ,y,Building("S1"))))         
-          case 6 => controller.doAndPublish(controller.setBuilding, List(Move(x + 2 ,y,Building("S2")), Move(x + 1 ,y,Building("S4")), Move(x,y,Building("S3"))))
-          case 7 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 2,Building("S2")), Move(x ,y,Building("S1")), Move(x ,y - 1,Building("S5"))))
-          case 8 => controller.doAndPublish(controller.setBuilding, List(Move(x - 2 ,y,Building("S2")), Move(x ,y,Building("S3")), Move(x - 1,y,Building("S4"))))
-          case 9 => controller.doAndPublish(controller.setBuilding, List(Move( x ,y + 2,Building("S2")), Move(x ,y,Building("S1")), Move(x, y + 1,Building("S5"))))
+          case 3 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x,y,Building("S1")), BaseIplt.Move(x,y + 1,Building("S2"))))
+          case 4 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y ,Building("S3")), BaseIplt.Move(x + 1,y,Building("S2"))))
+          case 5 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y - 1,Building("S2")), BaseIplt.Move(x ,y,Building("S1"))))         
+          case 6 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x + 2 ,y,Building("S2")), BaseIplt.Move(x + 1 ,y,Building("S4")), BaseIplt.Move(x,y,Building("S3"))))
+          case 7 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x ,y - 2,Building("S2")), BaseIplt.Move(x ,y,Building("S1")), BaseIplt.Move(x ,y - 1,Building("S5"))))
+          case 8 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move(x - 2 ,y,Building("S2")), BaseIplt.Move(x ,y,Building("S3")), BaseIplt.Move(x - 1,y,Building("S4"))))
+          case 9 => controller.doAndPublish(controller.setBuilding, List(BaseIplt.Move( x ,y + 2,Building("S2")), BaseIplt.Move(x ,y,Building("S1")), BaseIplt.Move(x, y + 1,Building("S5"))))
           case 0 => 
         }
       }
@@ -165,11 +166,7 @@ class Gui(controller: Controller) extends Frame with Observer {
     for (i <- controller.game.players)
       contents += new Label(i.toString)
   }
-/*
-  override def update(e: util.Event): Unit = { e match
-    case Event.FieldChanged => repaint()//new Gui(controller)repaint()
-  }
-*/
+
   var a = 0
   override def update: Unit = {
     contents = new BorderPanel {
