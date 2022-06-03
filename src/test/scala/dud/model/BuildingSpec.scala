@@ -10,3 +10,6 @@ class BuildingSpec extends AnyWordSpec {
   Building("Empty").toString should be ("+---------+\n" +
     "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n")
 }
+
+
+
