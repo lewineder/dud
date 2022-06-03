@@ -26,7 +26,6 @@ import java.awt.ComponentOrientation
 import javax.swing.ImageIcon
 import javax.swing.BorderFactory
 import javax.swing.border.*
-import scala.swing.Font
 
 class Gui(controller: Controller) extends Frame with Observer {
   controller.add(this)
@@ -74,10 +73,7 @@ class Gui(controller: Controller) extends Frame with Observer {
   def box = new FlowPanel{
     contents += new Button(Action("Undo") {controller.doAndPublish(controller.redo)})
     contents += new Button(Action("Redo") {controller.doAndPublish(controller.undo)})
-    /*val b1 = new Button()
-    b1.icon = new ImageIcon(getClass.getResource("/image1.png"))
-    b1.preferredSize = new Dimension(30,30)
-  contents += b1 */ } 
+
 
   visible = true
   pack()
@@ -87,7 +83,7 @@ class Gui(controller: Controller) extends Frame with Observer {
   class Draw(x: Int, y: Int) extends GridPanel(x + 1, y + 1):
       for (i <- 0 to x) {
         for (j <- 0 to y) {
-          val building = controller.game.field.getBuilding(i,j)
+          val building = controller.game.getField().getBuilding(i,j)
           val b = new CellButton(i,j, building.map)
           contents += b
           
