@@ -22,19 +22,19 @@ class Tui(controller: Controller) extends Observer{
         controller.handle(P1next())
         getInputLine(readLine) match
             case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
 
         getInputLine(readLine) match
             case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
         controller.handle(P3next())
         getInputLine(readLine) match
             case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
         controller.handle(P4next())
         getInputLine(readLine) match
             case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, move)
+            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
         getInputAndPrintLoop()
 
 

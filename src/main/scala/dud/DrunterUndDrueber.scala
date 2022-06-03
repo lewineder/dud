@@ -30,6 +30,5 @@ import scala.io.StdIn.readLine
     gui.repaint()
     val tui = Tui(controller)
     tui.run
-    
 
 

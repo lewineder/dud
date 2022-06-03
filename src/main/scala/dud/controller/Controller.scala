@@ -15,7 +15,7 @@ case class Controller(var game: Game) extends Observable{
         game.handle(event)
 
 
-    def doAndPublish(dothis: Move => Game, move: Move): Unit = {
+    def doAndPublish(dothis: List[Move] => Game, move: List[Move]): Unit = {
         game = dothis(move)
         notifyObservers
         //notifyObservers(Event.FieldChanged)
@@ -30,9 +30,8 @@ case class Controller(var game: Game) extends Observable{
 
 
     val undoManager = new UndoManager[Game]
-
     
-    def setBuilding(move: Move): Game = undoManager.doPlacement(game, PutCommand(move))
+    def setBuilding(move: List[Move]): Game = undoManager.doPlacement(game, PutCommand(move))
     def undo: Game = undoManager.undoPlacement(game)
     def redo: Game = undoManager.redoPlacement(game)
 
