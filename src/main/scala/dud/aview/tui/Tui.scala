@@ -4,7 +4,7 @@ package aview
 import dud.controller_component.BaseIplt.Controller
 
 import scala.util.Random
-import dud.model.game_component.BaseIplt.{Building, Move}
+import dud.model.game_component.BaseIplt.{Building}
 import dud.model.move_component.BaseIplt.Move
 import dud.util.*
 import model.*

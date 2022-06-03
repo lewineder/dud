@@ -7,7 +7,7 @@ import model.game_component.GameState
 import model.move_component.BaseIplt.Move
 import model.game_component.GameInterface
 
-trait ControllerInterface(var game: GameInterface) extends Observable {
+trait ControllerInterface extends Observable {
 
   def handle(event: GameEvent): Option[GameState]
 
