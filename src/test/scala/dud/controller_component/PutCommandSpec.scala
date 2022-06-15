@@ -1,8 +1,10 @@
 package dud;
-package controller;
+package controller_component;
 
-import dud.model.{Building, Field, Game, Move, Player, Turn}
-import dud.util.*
+import model.game_component.BaseIplt.{Building, Field, Game, Player, Turn}
+import model.move_component.BaseIplt.Move
+import BaseIplt.PutCommand
+import util.*
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -18,7 +20,7 @@ class PutCommandSpec extends AnyWordSpec {
     game.handle(P1next())
     game2.handle(P1next())
 
-    val command = PutCommand(Move(0, 0, Building("S1")))
+    val command = PutCommand(List[Move](Move(0, 0, Building("S1"))))
 
 
     "do nothing to a field in the matrix when called with" in {

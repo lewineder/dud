@@ -1,9 +1,10 @@
-package dud;
-package model;
+package dud
+package model
 
+import game_component.{Finished, Interrupted, Player1, Player2, Player3, Player4, Starting}
+import game_component.BaseIplt.{Player, Turn}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-import model.{Turn, Player}
 import util.*
 
 

@@ -1,12 +1,15 @@
 package dud
 package aview
 
+import dud.controller_component.BaseIplt.Controller
+
 import scala.util.Random
-import controller.Controller
+import dud.model.game_component.BaseIplt.{Building}
+import dud.model.move_component.BaseIplt.Move
 import dud.util.*
 import model.*
-import scala.util.{Try, Success, Failure}
 
+import scala.util.{Failure, Success, Try}
 import scala.io.StdIn.readLine
 
 

@@ -1,5 +1,5 @@
-package dud.util
-
+package dud
+package util
 
 // ------------------------------------------------Undo Mechanismus --------------------------------------------------
 //tested

@@ -1,17 +1,17 @@
-package dud.model
+package dud
+package model.game_component.BaseIplt
 
-import dud.util.*
-import dud.model.GameState
+import model.game_component.{Player1, Player2, Player3, Player4, Starting, Finished, Interrupted,Stateable}
+import model.game_component.GameState
+import util.*
+import util.GameEvent
 
-import scala.runtime.RichInt
-
-case class Turn(turnsPlayed: Int) extends Stateable:
+case class Turn(turnsPlayed: Int) extends Stateable :
 
   //---------------------------------------------- Strategy von State-Event --------------------------------------------
   override def handle(event: GameEvent): Option[GameState] =
     event match {
       case init: InitNew => gamestate = Some(Starting(this))
-
       case p1: P1next => gamestate = Some(Player1(this))
       case p2: P2next => gamestate = Some(Player2(this))
       case p3: P3next => gamestate = Some(Player3(this))

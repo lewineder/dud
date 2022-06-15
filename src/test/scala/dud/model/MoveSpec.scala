@@ -1,7 +1,8 @@
-package dud;
-package model;
+package dud
+package model
 
-import model.*;
+import game_component.BaseIplt.Building
+import move_component.BaseIplt.Move
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

@@ -1,4 +1,5 @@
-package dud.util
+package dud
+package util
 
 //----------------------------------------------  State Pattern für Turn ---------------------------------------------
 

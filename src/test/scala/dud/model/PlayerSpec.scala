@@ -1,7 +1,7 @@
-package dud.model
+package dud
+package model
 
-
-
+import game_component.BaseIplt.Player
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

@@ -2,14 +2,16 @@ package dud
 package aview
 package gui
 
-import controller.*
-import util.Event
-import util.Observer
-import dud.model.*
+import controller_component.*
+import controller_component.BaseIplt.Controller
+import model.*
+import model.game_component.BaseIplt.Building
+import model.move_component.BaseIplt.Move
+import util.{Event, Observer}
+
 import java.lang.Math
 import scala.swing.*
 import java.awt.image.BufferedImage
-//import scala.swing.BorderPanel.Position.*
 import javax.imageio.ImageIO
 import java.io.File
 import event.*
@@ -24,13 +26,11 @@ import java.awt.ComponentOrientation
 import javax.swing.ImageIcon
 import javax.swing.BorderFactory
 import javax.swing.border.*
-import scala.swing.Font
 
 class Gui(controller: Controller) extends Frame with Observer {
   controller.add(this)
   title = "Willkommen zu drunter und drüber"
-  //preferredSize = new Dimension(controller.game.field.col * 80,controller.game.field.row * 80)
-  val field = controller.game.field
+  val field = controller.game.getField()
   contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
     add(new Draw(field.row - 1,field.col - 1), BorderPanel.Position.Center)
@@ -70,14 +70,15 @@ class Gui(controller: Controller) extends Frame with Observer {
       sys.exit(0)
   }
 
-  def box = new FlowPanel{
-    contents += new Button(Action("Undo") {controller.doAndPublish(controller.redo)})
-    contents += new Button(Action("Redo") {controller.doAndPublish(controller.undo)})
-    /*val b1 = new Button()
-    b1.icon = new ImageIcon(getClass.getResource("/image1.png"))
-    b1.preferredSize = new Dimension(30,30)
-  contents += b1 */ } 
-
+  def box = new FlowPanel {
+    contents += new Button(Action("Undo") {
+      controller.doAndPublish(controller.redo)
+    })
+    contents += new Button(Action("Redo") {
+      controller.doAndPublish(controller.undo)
+    })
+  }
+  
   visible = true
   pack()
   centerOnScreen()
@@ -86,7 +87,7 @@ class Gui(controller: Controller) extends Frame with Observer {
   class Draw(x: Int, y: Int) extends GridPanel(x + 1, y + 1):
       for (i <- 0 to x) {
         for (j <- 0 to y) {
-          val building = controller.game.field.getBuilding(i,j)
+          val building = controller.game.getField().getBuilding(i,j)
           val b = new CellButton(i,j, building.map)
           contents += b
           
@@ -105,7 +106,7 @@ class Gui(controller: Controller) extends Frame with Observer {
           case 2 => controller.doAndPublish(controller.setBuilding, List(Move(x - 1,y,Building("S2")), Move(x,y,Building("S3"))))
           case 3 => controller.doAndPublish(controller.setBuilding, List(Move(x,y,Building("S1")), Move(x,y + 1,Building("S2"))))
           case 4 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y ,Building("S3")), Move(x + 1,y,Building("S2"))))
-          case 5 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 1,Building("S2")), Move(x ,y,Building("S1"))))         
+          case 5 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 1,Building("S2")), Move(x ,y,Building("S1"))))
           case 6 => controller.doAndPublish(controller.setBuilding, List(Move(x + 2 ,y,Building("S2")), Move(x + 1 ,y,Building("S4")), Move(x,y,Building("S3"))))
           case 7 => controller.doAndPublish(controller.setBuilding, List(Move(x ,y - 2,Building("S2")), Move(x ,y,Building("S1")), Move(x ,y - 1,Building("S5"))))
           case 8 => controller.doAndPublish(controller.setBuilding, List(Move(x - 2 ,y,Building("S2")), Move(x ,y,Building("S3")), Move(x - 1,y,Building("S4"))))
@@ -162,14 +163,10 @@ class Gui(controller: Controller) extends Frame with Observer {
     
       
   def turnLabel = new GridPanel(4, 1) {
-    for (i <- controller.game.players)
+    for (i <- controller.game.getPlayers())
       contents += new Label(i.toString)
   }
-/*
-  override def update(e: util.Event): Unit = { e match
-    case Event.FieldChanged => repaint()//new Gui(controller)repaint()
-  }
-*/
+
   var a = 0
   override def update: Unit = {
     contents = new BorderPanel {
