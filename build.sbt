@@ -6,7 +6,7 @@ ThisBuild / libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.11"
 ThisBuild / libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.11" % "test"
 
 
-//jacoco und codecov
+//jacoco and codecov
 lazy val root = (project in file("."))
   .settings(
     name := "dud"
