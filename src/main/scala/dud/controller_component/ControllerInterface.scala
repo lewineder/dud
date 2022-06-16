@@ -6,8 +6,11 @@ import util.Observable
 import model.game_component.GameState
 import model.move_component.BaseIplt.Move
 import model.game_component.GameInterface
+import com.google.inject.{Guice, Inject}
 
 trait ControllerInterface extends Observable {
+
+  var game: GameInterface
 
   def handle(event: GameEvent): Option[GameState]
 

@@ -19,6 +19,12 @@ jacocoReportSettings := JacocoReportSettings(
   Seq(JacocoReportFormats.ScalaHTML, JacocoReportFormats.XML), // note XML formatter
   "utf-8")
 
+//Excludes for Testing
+jacocoExcludes := Seq(
+  "src.main.scala.dud.aview*",
+  "src.main.scala.dud.DrunterundDrueber"
+)
+
 
 // swing
 libraryDependencies += "org.scala-lang.modules" %% "scala-swing" % "3.0.0"
@@ -42,3 +48,8 @@ lazy val javaFXModules = Seq("base", "controls", "fxml", "graphics", "media", "s
 libraryDependencies ++= javaFXModules.map(m =>
   "org.openjfx" % s"javafx-$m" % "16" classifier osName
 )
+
+
+// Dependencie-Injection
+libraryDependencies += "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0"
+libraryDependencies += ( "net.codingwell" %% "scala-guice" % "5.0.2" ).cross( CrossVersion.for3Use2_13 )

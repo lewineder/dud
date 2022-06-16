@@ -9,6 +9,11 @@ import model.game_component.GameState
 
 trait GameInterface {
 
+
+  def field: Field
+  def players: Array[Player]
+  def turn: Turn
+
   def handle(event: GameEvent): Option[GameState]
   def playersToString: String
   def getField(): Field

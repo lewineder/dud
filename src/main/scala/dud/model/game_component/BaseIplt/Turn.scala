@@ -6,6 +6,8 @@ import model.game_component.GameState
 import util.*
 import util.GameEvent
 
+import com.google.inject.Inject
+
 case class Turn(turnsPlayed: Int) extends Stateable :
 
   //---------------------------------------------- Strategy von State-Event --------------------------------------------

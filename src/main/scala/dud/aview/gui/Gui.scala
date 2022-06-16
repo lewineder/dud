@@ -3,7 +3,7 @@ package aview
 package gui
 
 import controller_component.*
-import controller_component.BaseIplt.Controller
+import controller_component.ControllerInterface
 import model.*
 import model.game_component.BaseIplt.Building
 import model.move_component.BaseIplt.Move
@@ -27,7 +27,7 @@ import javax.swing.ImageIcon
 import javax.swing.BorderFactory
 import javax.swing.border.*
 
-class Gui(controller: Controller) extends Frame with Observer {
+class Gui(controller: ControllerInterface) extends Frame with Observer {
   controller.add(this)
   title = "Willkommen zu drunter und drüber"
   val field = controller.game.getField()
