@@ -1,7 +1,7 @@
 package dud
 package aview
 
-import dud.controller_component.BaseIplt.Controller
+import dud.controller_component.ControllerInterface
 
 import scala.util.Random
 import dud.model.game_component.BaseIplt.{Building}
@@ -14,7 +14,7 @@ import scala.io.StdIn.readLine
 
 
 
-class Tui(controller: Controller) extends Observer{
+class Tui(controller: ControllerInterface) extends Observer{
     controller.add(this)
     def run =
         controller.handle(InitNew())
