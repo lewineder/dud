@@ -57,4 +57,3 @@ libraryDependencies += ( "net.codingwell" %% "scala-guice" % "5.0.2" ).cross( Cr
 
 //File-IO SML and JSON
 libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0"
-libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.2"
