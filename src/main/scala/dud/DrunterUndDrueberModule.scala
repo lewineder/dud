@@ -14,4 +14,6 @@ class DrunterUndDrueberModule extends AbstractModule{
   override def configure(): Unit =
     bind(classOf[ControllerInterface]).to(classOf[Controller])
     bind(classOf[GameInterface]).to(classOf[Game])
+
+    bind[FileIOInterface].to[fileIoJsonImpl.FileIO]
 }
