@@ -15,15 +15,9 @@ import com.google.inject.Guice
 @main def run(sx: Int = 6, sy: Int = 6): Unit =
 
     val injector = Guice.createInjector(new DrunterUndDrueberModule)
-    val controller = injector.getInstance(classOf[ControllerInterface])
+    
 
-    //val startBuilding = 1
-    //val field = new Field(sx,sy,Building("Empty"))
-    //field.init
-    //val player = Array(Player("1", startBuilding), Player("2", startBuilding), Player("3", startBuilding), Player("4", startBuilding))
-    //val turn = Turn(0)
-    //val game = Game(field, player, turn)
-
+    lazy val controller:ControllerInterface = injector.getInstance(classOf[Controller])
 
     val gui = new Gui(controller)
     gui.repaint()

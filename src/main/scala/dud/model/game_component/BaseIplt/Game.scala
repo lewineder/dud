@@ -10,7 +10,7 @@ import com.google.inject.Inject
 case class Game (field: Field, players: Array[Player], turn: Turn) extends GameInterface {
 
   @Inject
-  def this() = this(field = new Field(10, 10, Building("Empty")), players = Array(Player("Spieler1", 4), Player("Spieler2", 4), Player("Spieler3", 4), Player("Spieler4", 4)), turn = Turn(1))
+  def this() = this(field = new Field(8, 8, Building("Empty")), players = Array(Player("1", 0), Player("2", 0), Player("3", 0), Player("4", 0)), turn = Turn(1))
 
   def handle(event: GameEvent): Option[GameState] =
     turn.handle(event)
