@@ -15,6 +15,8 @@ class FileIO extends FileIOInterface {
   override def load: GameInterface = {
     val file = scala.xml.XML.loadFile("dud.xml")
     return (file \\ "game").text.trim()
+
+    //todo:
   }
 
   override def save(game: GameInterface): Unit = {
@@ -36,7 +38,7 @@ class FileIO extends FileIOInterface {
         {
           for {
             row <- game.players.indices
-          } yield playerToXml(row)
+          } yield playerToXml(game.players(row))
         }
       </players>
       <turn>
