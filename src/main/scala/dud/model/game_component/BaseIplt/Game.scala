@@ -19,12 +19,30 @@ case class Game (field: Field, players: Array[Player], turn: Turn) extends GameI
     val con = for (p <- players) yield p.toString
     con.mkString("\n")
 
-  def setBuilding(row: Int, col: Int, building: Building): Game =
-    copy(field.setBuilding(row, col, building), players, turn)
+  def setBuilding(row: Int, col: Int, building: Building, skip: Int): Game =
+    copy(field.setBuilding(row, col, building), players, turn.setTurn(skip))
 
   def getField(): Field = this.field
   def getPlayers(): Array[Player] = this.players
 
+  ///*
+  def countPoints(player: Int): Int = 
+    val count = List(0,0,0,0)
+    for {i <- 0 until field.col; j <- 0 until field.row}
+      field.getBuilding(i,j) match{
+        case h: Haus1 => count.updated(0, count(0) + 1)
+        case h: Haus2 => count.updated(1, count(1) + 1)
+        case h: Haus3 => count.updated(2, count(2) + 1)
+        case h: Haus4 => count.updated(3, count(3) + 1)
+        case _ =>
+      }
+    count(player)
+  //*/
+
+
+  def pointsToString(): IndexedSeq[String] = 
+    for {i <- 0 until players.length} yield players(i).toString + ":  Points = " + countPoints(i)
+  
   override def toString: String =
-    field.toString + "\n" + playersToString + "\n" + turn.toString
+    field.toString + "\n" + pointsToString().mkString("\n") + "\n\n" + turn.toString
 }

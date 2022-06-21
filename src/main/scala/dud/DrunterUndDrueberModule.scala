@@ -15,5 +15,5 @@ class DrunterUndDrueberModule extends AbstractModule{
     bind(classOf[ControllerInterface]).to(classOf[Controller])
     bind(classOf[GameInterface]).to(classOf[Game])
 
-    bind[FileIOInterface].to[fileIoJsonImpl.FileIO]
+    //bind[FileIOInterface].to[fileIoJsonImpl.FileIO]
 }

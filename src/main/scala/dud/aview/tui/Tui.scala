@@ -22,19 +22,7 @@ class Tui(controller: ControllerInterface) extends Observer{
         getInputAndPrintLoop()
 
     def getInputAndPrintLoop(): Unit =
-        controller.handle(P1next())
-        getInputLine(readLine) match
-            case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
-
-        getInputLine(readLine) match
-            case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
-        controller.handle(P3next())
-        getInputLine(readLine) match
-            case None =>
-            case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
-        controller.handle(P4next())
+        controller.handle(Play())
         getInputLine(readLine) match
             case None =>
             case Some(move) => controller.doAndPublish(controller.setBuilding, List(move))
@@ -56,15 +44,11 @@ class Tui(controller: ControllerInterface) extends Observer{
             case 'q' => scala.sys.exit()
             case 'z' => controller.doAndPublish(controller.redo); None
             case 'y' => controller.doAndPublish(controller.undo); None
-            //case 'p' => PhantomPlayer.strategy; None
             case _ =>
                 toMove(input) match {
                     case Success(m) => Some(m)
                     case Failure(n) => println(s"Falsche Eingabe: $n"); None
                 }
-
-
-    //----------------------------------------------------------------------------------------------------------------
 
     override def update: Unit = println(controller.toString)
 }

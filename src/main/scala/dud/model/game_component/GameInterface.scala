@@ -17,6 +17,6 @@ trait GameInterface {
   def playersToString: String
   def getField(): Field
   def getPlayers(): Array[Player]
-  def setBuilding(row: Int, col: Int, building: Building): GameInterface
+  def pointsToString(): IndexedSeq[String]
+  def setBuilding(row: Int, col: Int, building: Building, skip: Int): GameInterface
 }
-

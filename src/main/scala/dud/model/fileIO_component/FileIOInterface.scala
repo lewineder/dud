@@ -1,3 +1,4 @@
+/*
 package dud
 package model
 package fileIO_component
@@ -10,3 +11,4 @@ trait FileIOInterface {
   def load: GameInterface
   def save(game: GameInterface): Unit
 }
+*/
