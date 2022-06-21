@@ -15,18 +15,21 @@ class PutCommand(move: List[Move]) extends Command[GameInterface]:
   override def doPlacement(game: GameInterface): GameInterface = {
     var gameNew = game
     for (i <- 0 until move.size)
-      gameNew = gameNew.setBuilding(move(i).row, move(i).col, move(i).building, 0)
+      gameNew = gameNew.setBuilding(move(i).row, move(i).col, move(i).building)
+    gameNew.setTurn(0)
     gameNew
   }
   override def undoPlacement(game: GameInterface): GameInterface =
     var gameNew = game
     for (i <- 0 until move.size)
-      gameNew = gameNew.setBuilding(move(i).row, move(i).col, Building("Empty"), 2)
+      gameNew = gameNew.setBuilding(move(i).row, move(i).col, Building("Empty"))
+    gameNew.setTurn(2)
     gameNew
 
   override def redoPlacement(game: GameInterface): GameInterface =
     var gameNew = game
     for (i <- 0 until move.size)
-      gameNew = gameNew.setBuilding(move(i).row, move(i).col, move(i).building, 0)
+      gameNew = gameNew.setBuilding(move(i).row, move(i).col, move(i).building)
+    gameNew.setTurn(0)
     gameNew
 // -------------------------------------------------------------------------------------------------------------------

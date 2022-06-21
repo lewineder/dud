@@ -19,8 +19,11 @@ case class Game (field: Field, players: Array[Player], turn: Turn) extends GameI
     val con = for (p <- players) yield p.toString
     con.mkString("\n")
 
-  def setBuilding(row: Int, col: Int, building: Building, skip: Int): Game =
-    copy(field.setBuilding(row, col, building), players, turn.setTurn(skip))
+  def setBuilding(row: Int, col: Int, building: Building): Game =
+    copy(field.setBuilding(row, col, building), players, turn)
+
+  def setTurn(skip: Int): Turn = 
+    turn.setTurn(skip)
 
   def getField(): Field = this.field
   def getPlayers(): Array[Player] = this.players
