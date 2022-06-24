@@ -22,7 +22,8 @@ jacocoReportSettings := JacocoReportSettings(
 //Excludes for Testing
 jacocoExcludes := Seq(
   "src.main.scala.dud.aview*",
-  "src.main.scala.dud.DrunterundDrueber"
+  "src.main.scala.dud.DrunterundDrueber",
+  "src.main.scala.dud.DrunterundDrueberModule"
 )
 
 
@@ -53,3 +54,8 @@ libraryDependencies ++= javaFXModules.map(m =>
 // Dependencie-Injection
 libraryDependencies += "com.google.inject.extensions" % "guice-assistedinject" % "5.1.0"
 libraryDependencies += ( "net.codingwell" %% "scala-guice" % "5.0.2" ).cross( CrossVersion.for3Use2_13 )
+
+
+//File-IO SML and JSON
+libraryDependencies += "org.scala-lang.modules" %% "scala-xml" % "2.1.0"
+libraryDependencies += ("com.typesafe.play" %% "play-json" % "2.10.0-RC6")

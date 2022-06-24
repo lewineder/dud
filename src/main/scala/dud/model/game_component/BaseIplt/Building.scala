@@ -30,15 +30,10 @@ class Strasse2() extends Building:
     override def name: String = "S2"
     override def toString: String = "+--| ¦ |--+\n" + "!__| ¦ |__!\n" + "___     ___\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
 
-
-
-
 class Strasse4() extends Building:
     override def map: String = "/image3a.png"
     override def name: String = "S4"
     override def toString: String = "+--| ¦ |--+\n" + "!__| ¦ |__!\n" + "___     ___\n" + "|  | ¦ |  |\n" + "+--| ¦ |--+\n"
-
-
 
 class Strasse5() extends Building:
     override def map: String = "/image3b.png"
@@ -95,7 +90,6 @@ object Building {
         case "H2" => new Haus2("\u001b[32m")
         case "H3" => new Haus3("\u001b[31m")
         case "H4" => new Haus4("\u001b[36m")
-        case "Empty" => new Empty()
-
+        case "Ey" => new Empty()
     }
 }

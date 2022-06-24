@@ -5,6 +5,7 @@ package gui
 import controller_component.*
 import controller_component.ControllerInterface
 import model.*
+import model.game_component.*
 import model.game_component.BaseIplt.Building
 import model.move_component.BaseIplt.Move
 import util.{Event, Observer}
@@ -22,10 +23,12 @@ import java.awt.Dimension
 import java.net.http.HttpClient.Builder
 import javax.swing.text.JTextComponent
 import javax.swing.JTextArea
+import javax.swing.JTable
 import java.awt.ComponentOrientation
 import javax.swing.ImageIcon
 import javax.swing.BorderFactory
 import javax.swing.border.*
+import javax.swing.JOptionPane
 
 class Gui(controller: ControllerInterface) extends Frame with Observer {
   controller.add(this)
@@ -34,8 +37,8 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
   contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
     add(new Draw(field.row - 1,field.col - 1), BorderPanel.Position.Center)
-    add(turnLabel, BorderPanel.Position.East)
     add(pictures, BorderPanel.Position.South)
+    add(turnLabel, BorderPanel.Position.East)
   }
 
   menuBar = new MenuBar {
@@ -70,12 +73,17 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
       sys.exit(0)
   }
 
+  def endGame(): Unit = {
+    val icon = new ImageIcon(getClass.getResource("/party.png"))
+    val res = Dialog.showMessage(contents.head, "", title= "Glückwunsch!!! Spiel ist zu Ende", icon = icon )
+  }
+
   def box = new FlowPanel {
     contents += new Button(Action("Undo") {
-      controller.doAndPublish(controller.redo)
+      controller.doAndPublish(controller.undo)
     })
     contents += new Button(Action("Redo") {
-      controller.doAndPublish(controller.undo)
+      controller.doAndPublish(controller.redo)
     })
   }
   
@@ -160,20 +168,34 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
             case "/three3.png" => 8
             case "/three4.png" => 9
           }
-    
       
+  
   def turnLabel = new GridPanel(4, 1) {
-    for (i <- controller.game.getPlayers())
-      contents += new Label(i.toString)
+    for (i <- 0 until controller.game.players.length)
+      val pts = controller.game.pointsToString()
+      val points = new Label("    " + pts(i) + "    ")
+      if (controller.game.turn.turnsPlayed == i + 1)
+        points.foreground = Color.red
+      contents += points
+  }
+  
+
+  def createTable: Table = {
+    val table = new Table(2,4)
+    for (i <- 0 to 3)
+      table.update(0,i, controller.game.players(i))
+    table
   }
 
-  var a = 0
   override def update: Unit = {
     contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
     add(new Draw(field.col - 1,field.row - 1), BorderPanel.Position.Center)
-    add(turnLabel, BorderPanel.Position.East)
+    //add(turnLabel, BorderPanel.Position.East)
     add(pictures, BorderPanel.Position.South)
+    add(turnLabel, BorderPanel.Position.East)
+    if (controller.game.turn.gamestate == Some(Finished(controller.game.turn)))
+      endGame()
     repaint()
   }
   }

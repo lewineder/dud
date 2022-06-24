@@ -16,4 +16,6 @@ class Controller(var game: GameInterface) extends ControllerInterface {
   override def setBuilding(move: List[Move]): GameInterface = game
   override def undo: GameInterface = game
   override def redo: GameInterface = game
+  def save: Unit = {}
+  def load: Unit = {}
 }

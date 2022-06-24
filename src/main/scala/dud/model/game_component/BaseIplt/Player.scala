@@ -7,4 +7,4 @@ case class Player (val name: String, var remaining: Int):
 
   def getRemaining: Int = remaining
 
-  override def toString = "[" + remaining + "] Gebäude verbleibend für Spieler << " + name + " >>"
+  override def toString = "Spieler" + name

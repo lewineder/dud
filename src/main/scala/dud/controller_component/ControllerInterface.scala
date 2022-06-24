@@ -23,4 +23,8 @@ trait ControllerInterface extends Observable {
   def undo: GameInterface
 
   def redo: GameInterface
+
+  def save: Unit
+
+  def load: Unit
 }

@@ -3,11 +3,17 @@ package controller_component
 package BaseIplt
 
 import com.google.inject.{Guice, Inject}
+import dud.model.fileIO_component.FileIOInterface
 import model.game_component.GameInterface
 import model.game_component.BaseIplt.Game
 import model.move_component.BaseIplt.Move
 import model.game_component.GameState
 import util.*
+
+import java.io.*
+import play.api.libs.json.JsValue
+
+import scala.xml.{NodeSeq, PrettyPrinter}
 
 case class Controller @Inject() (var game: GameInterface) extends ControllerInterface {
 
@@ -24,6 +30,18 @@ case class Controller @Inject() (var game: GameInterface) extends ControllerInte
     notifyObservers
   }
 
+
+  def save: Unit = {
+    Guice.createInjector(new DrunterUndDrueberModule).getInstance(classOf[FileIOInterface]).save(game)
+    print("Spiel gespeichert")
+  }
+
+  def load: Unit = {
+    game = Guice.createInjector(new DrunterUndDrueberModule).getInstance(classOf[FileIOInterface]).load
+    handle(Play())
+    notifyObservers
+    print("Spiel geladen")
+  }
 
   val undoManager = new UndoManager[GameInterface]
 

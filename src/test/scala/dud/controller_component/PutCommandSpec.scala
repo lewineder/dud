@@ -11,14 +11,14 @@ import org.scalatest.wordspec.AnyWordSpec
 class PutCommandSpec extends AnyWordSpec {
   "PutCommand" should {
 
-    val field1 = new Field(1, 1, Building("Empty"))
+    val field1 = new Field(1, 1, Building("Ey"))
     val field2 = new Field(1, 1, Building("S2"))
     val player = Array(Player("Farin", 1), Player("Rod", 1), Player("Bela", 1), Player("Herbert", 1))
     val turn = Turn(0)
     val game = Game(field1, player, turn)
     val game2 = Game(field2, player, turn)
-    game.handle(P1next())
-    game2.handle(P1next())
+    game.handle(Play())
+    game2.handle(Play())
 
     val command = PutCommand(List[Move](Move(0, 0, Building("S1"))))
 

@@ -1,7 +1,7 @@
 package dud
 package model
 
-import game_component.{Finished, Interrupted, Player1, Player2, Player3, Player4, Starting}
+import game_component.{Finished, Interrupted, Playing, Starting}
 import game_component.BaseIplt.{Player, Turn}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
@@ -14,21 +14,18 @@ class GameStateSpec extends AnyWordSpec {
             val turn = new Turn(0)
             "and return acoordingly" in {
                 turn.gamestate should be(None)
-                turn.handle(P1next()) should be(turn.gamestate)
+                turn.handle(Play()) should be(turn.gamestate)
             }
         }
     }
 
     "a Gamestate" when {
-        val turn = Turn(0)
+        val turn = Turn(1)
         "called" should {
             "print a shoutout to a Player" in {
-                Player1(turn).toString should be ("Spieler 1 Nächste Strasse setzen")
-                Player2(turn).toString should be ("Spieler 2 Nächste Strasse setzen")
-                Player3(turn).toString should be ("Spieler 3 Nächste Strasse setzen")
-                Player4(turn).toString should be ("Spieler 4 Nächste Strasse setzen")
+                Playing(turn).toString should be ("Spieler 1 Nächste Strasse setzen")
                 Interrupted(turn).toString should be ("Fehler beim setzen - zurück mit >> y <<")
-                Finished(turn).toString should be ("Spiel zu Ende glückwunsch")
+                Finished(turn).toString should be ("✧･ﾟ: *✧･ﾟ:* 　Glückwunsch!!! End of Game　 *:･ﾟ✧*:･ﾟ✧")
                 Starting(turn).toString should be ("Spiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
             }
         }

@@ -8,8 +8,8 @@ import org.scalatest.wordspec.AnyWordSpec
 class FieldSpec extends AnyWordSpec {
     "A dud field" when {
     "filled with nothing " should {
-      val field1 = new Field(1, 1, Building("Empty"))
-      val field2 = new Field(1, 2, Building("Empty"))
+      val field1 = new Field(1, 1, Building("Ey"))
+      val field2 = new Field(1, 2, Building("Ey"))
       "have Empty Cells as String" in {
         field1.toString should be("\n     1      \n\n+---------+\n" + "|         |\n" + "|         |     1\n" + "|         |\n" + "+---------+\n")
         field2.toString should be("\n     1           2      \n\n+---------+ +---------+\n" + "|         | |         |\n" + "|         | |         |     1\n" +
@@ -32,7 +32,7 @@ class FieldSpec extends AnyWordSpec {
     "A private skip Method" when  {
       "called with nothing" should {
         val list1 = List[String](" ")
-        val field1 = new Field(1, 1, Building("Empty"))
+        val field1 = new Field(1, 1, Building("Ey"))
         "return a String like:" in {
           field1.skip(list1, 1, 1, 1) should be ("")
         }
