@@ -20,15 +20,12 @@ class GameStateSpec extends AnyWordSpec {
     }
 
     "a Gamestate" when {
-        val turn = Turn(0)
+        val turn = Turn(1)
         "called" should {
             "print a shoutout to a Player" in {
                 Playing(turn).toString should be ("Spieler 1 Nächste Strasse setzen")
-                Playing(turn).toString should be ("Spieler 2 Nächste Strasse setzen")
-                Playing(turn).toString should be ("Spieler 3 Nächste Strasse setzen")
-                Playing(turn).toString should be ("Spieler 4 Nächste Strasse setzen")
                 Interrupted(turn).toString should be ("Fehler beim setzen - zurück mit >> y <<")
-                Finished(turn).toString should be ("Spiel zu Ende glückwunsch")
+                Finished(turn).toString should be ("✧･ﾟ: *✧･ﾟ:* 　Glückwunsch!!! End of Game　 *:･ﾟ✧*:･ﾟ✧")
                 Starting(turn).toString should be ("Spiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
             }
         }
