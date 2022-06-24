@@ -18,7 +18,7 @@ class GameSpec extends AnyWordSpec {
         "filled" should {
             "use the Methods" in {
 
-                game.handle(P1next()).toString should be("Some(Spieler 1 Nächste Strasse setzen)")
+                game.handle(Play()).toString should be("Some(Spieler 1 Nächste Strasse setzen)")
 
                 game.toString should include ("[1] Gebäude verbleibend für Spieler << Farin >>")
                 game.toString should include ("[1] Gebäude verbleibend für Spieler << Rod >>")

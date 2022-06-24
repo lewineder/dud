@@ -58,3 +58,18 @@ object Populate{
 
   def getBuild = Array(Building("H1"), Building("H2"), Building("H3"), Building("H4"))
 }
+//--------------------------------------------------------------------------------------------------------------------------
+
+//-----------------------------------------------------------------------Singleton-----------------------------------------
+object Populate{
+  def apply(matrix: Array[Array[Building]]): Array[Array[Building]] =
+    val row = matrix.length
+    val col = matrix(0).length
+    val rd = scala.util.Random.shuffle(0.until(col * row))
+    for (i <- 0 until (((row * col) / 20) * 4)) {
+      matrix(rd(i) / col)(rd(i) % col) = getBuild(i % 4)
+    }
+    matrix
+
+  def getBuild = Array(Building("H1"), Building("H2"), Building("H3"), Building("H4"))
+}

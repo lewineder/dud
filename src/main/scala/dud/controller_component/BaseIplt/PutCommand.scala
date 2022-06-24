@@ -22,7 +22,7 @@ class PutCommand(move: List[Move]) extends Command[GameInterface]:
   override def undoPlacement(game: GameInterface): GameInterface =
     var gameNew = game
     for (i <- 0 until move.size)
-      gameNew = gameNew.setBuilding(move(i).row, move(i).col, Building("Empty"))
+      gameNew = gameNew.setBuilding(move(i).row, move(i).col, Building("Ey"))
     gameNew.setTurn(2)
     gameNew
 

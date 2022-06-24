@@ -1,0 +1,90 @@
+<game>
+    <field>
+        <size> 8 </size>
+        <cells>
+            <building> Strasse2 </building>
+            <building> Empty </building>
+            <building> Haus2 </building>
+            <building> Haus1 </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Haus3 </building>
+            <building> Empty </building>
+            <building> Haus2 </building>
+            <building> Haus1 </building>
+            <building> Haus4 </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Haus4 </building>
+            <building> Haus3 </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Haus1 </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Haus3 </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Empty </building>
+            <building> Haus4 </building>
+            <building> Haus2 </building>
+        </cells>
+    </field>
+    <players>
+        <player>
+            <remaining> 0 </remaining>
+            <name> 1 </name>
+        </player>
+        <player>
+            <remaining> 0 </remaining>
+            <name> 2 </name>
+        </player>
+        <player>
+            <remaining> 0 </remaining>
+            <name> 3 </name>
+        </player>
+        <player>
+            <remaining> 0 </remaining>
+            <name> 4 </name>
+        </player>
+    </players>
+    <turn> 2 </turn>
+</game>

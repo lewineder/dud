@@ -12,7 +12,7 @@ import scala.language.postfixOps
 case class Game (field: Field, players: Array[Player], turn: Turn) extends GameInterface {
 
   @Inject
-  def this() = this(field = new Field(8, 8, Building("Empty")), players = Array(Player("1", 0), Player("2", 0), Player("3", 0), Player("4", 0)), turn = Turn(1))
+  def this() = this(field = new Field(8, 8, Building("Ey")), players = Array(Player("1", 0), Player("2", 0), Player("3", 0), Player("4", 0)), turn = Turn(1))
 
   def handle(event: GameEvent): Option[GameState] =
     turn.handle(event)

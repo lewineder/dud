@@ -56,6 +56,8 @@ class Tui(controller: ControllerInterface) extends Observer{
             case 'q' => scala.sys.exit()
             case 'z' => controller.doAndPublish(controller.redo); None
             case 'y' => controller.doAndPublish(controller.undo); None
+            case 'l' => controller.load; None
+            case 's' => controller.save; None
             case _ =>
                 toMove(input) match {
                     case Success(m) => Some(m)

@@ -17,8 +17,8 @@ class PutCommandSpec extends AnyWordSpec {
     val turn = Turn(0)
     val game = Game(field1, player, turn)
     val game2 = Game(field2, player, turn)
-    game.handle(P1next())
-    game2.handle(P1next())
+    game.handle(Play())
+    game2.handle(Play())
 
     val command = PutCommand(List[Move](Move(0, 0, Building("S1"))))
 
