@@ -25,36 +25,30 @@ class FileIO extends FileIOInterface {
     val file: String = Source.fromFile("dud.json").getLines.mkString
     val jfile: JsValue = Json.parse(file)
 
-    val names = (jfile \ "players").get.as[List[JsObject]]
+    val cells = (jfile \ "field" \ "cells" \\ "name").toList
 
-    val cells = (jfile \ "field").get.as[List[JsObject]]
-    val turns = Turn((jfile \ "turn").get.as[Int])
 
+    val turns = Turn((jfile \ "turn").get.toString.toInt)
     val field = jsonToField(cells)
-    val players = jsonToPlayers(names)
+    val player = Array[Player](Player("1", 0), Player("2", 0), Player("3", 0), Player("4", 0))
 
 
-    Game(field, players, turns)
+
+    Game(field, player, turns)
   }
-
-  def jsonToPlayers(names: List[JsObject]) = {
-    Array.tabulate(names.length)(
-      for {
-        player <- names
-      } yield Player((player \ "name").get.toString, (player \ "remaining").get.as[Int])
-    )
-  }
-
 
   //etwas kürzere Version wie bei XML - allerdings auch etwas komplizierter
-  def jsonToField(data: List[JsObject]): Field = {
+  def jsonToField(data: List[JsValue]): Field = {
     val size = scala.math.sqrt(data.length).toInt
     Field(Array.tabulate(size,size)((x,y) => jsonToBuilding(data(y*size+x))))
   }
 
-  def jsonToBuilding(building: JsObject): Building = {
-    Building(building.toString.charAt(0).toString + building.toString.charAt(building.toString.length - 1).toString)
+  def jsonToBuilding(building: JsValue): Building = {
+    val house = building.toString.strip.stripPrefix("\"").stripSuffix("\"")
+    Building(house.charAt(0).toString + house.charAt(house.length - 1).toString)
   }
+
+
 
 
   override def save(game: GameInterface) = {
@@ -65,29 +59,10 @@ class FileIO extends FileIOInterface {
 
   def gameToJson(game: GameInterface) = {
     Json.obj(
-      "players" -> playersToJson(game.getPlayers()),
       "field" -> fieldToJson(game.getField().cells),
       "turn" -> game.turn.turnsPlayed
     )
   }
-
-  def playersToJson(players: Array[Player]) = {
-    Json.obj(
-      "players" -> {
-        for {
-          x <- players
-        } yield playerToJson(x)
-      }
-    )
-  }
-
-  def playerToJson(player: Player) = {
-    Json.obj(
-      "name" -> player.name,
-      "remaining" -> player.remaining
-    )
-  }
-
 
 
   def fieldToJson(cells: Array[Array[Building]]) = {
