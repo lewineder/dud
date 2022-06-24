@@ -16,7 +16,7 @@ class PlayerSpec extends AnyWordSpec {
         player.getRemaining should be (1)
       }
       "get a String in Form:" in {
-        player.toString should be ("[SpielerFarin]")
+        player.toString should be ("Spieler" + player.name)
       }
     }
   }
