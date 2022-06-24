@@ -9,7 +9,7 @@ class BuildingSpec extends AnyWordSpec {
 
   Building("S1").toString should be ("+---------+\n" +
     "!_________!\n" + "___________\n" + "|         |\n" + "+---------+\n")
-  Building("Empty").toString should be ("+---------+\n" +
+  Building("Ey").toString should be ("+---------+\n" +
     "|         |\n"+ "|         |\n" + "|         |\n" + "+---------+\n")
 }
 

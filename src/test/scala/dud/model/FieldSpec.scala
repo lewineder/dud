@@ -32,7 +32,7 @@ class FieldSpec extends AnyWordSpec {
     "A private skip Method" when  {
       "called with nothing" should {
         val list1 = List[String](" ")
-        val field1 = new Field(1, 1, Building("Empty"))
+        val field1 = new Field(1, 1, Building("Ey"))
         "return a String like:" in {
           field1.skip(list1, 1, 1, 1) should be ("")
         }
