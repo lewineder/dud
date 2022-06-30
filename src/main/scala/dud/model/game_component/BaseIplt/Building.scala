@@ -93,3 +93,13 @@ object Building {
         case "Ey" => new Empty()
     }
 }
+
+object House {
+    def apply(name: String) = name match {
+        case "H1" => new Haus1("\u001b[33m")
+        case "H2" => new Haus2("\u001b[32m")
+        case "H3" => new Haus3("\u001b[31m")
+        case "H4" => new Haus4("\u001b[36m")
+       
+    }
+}

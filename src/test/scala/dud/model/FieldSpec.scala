@@ -1,7 +1,7 @@
 package dud
 package model
 
-import game_component.BaseIplt.{Building, Field}
+import game_component.BaseIplt.{Populate,Building, Field}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 
@@ -12,8 +12,7 @@ class FieldSpec extends AnyWordSpec {
       val field2 = new Field(1, 2, Building("Ey"))
       "have Empty Cells as String" in {
         field1.toString should be("\n     1      \n\n+---------+\n" + "|         |\n" + "|         |     1\n" + "|         |\n" + "+---------+\n")
-        field2.toString should be("\n     1           2      \n\n+---------+ +---------+\n" + "|         | |         |\n" + "|         | |         |     1\n" +
-                                  "|         | |         |\n" + "+---------+ +---------+\n")
+        field2.toString should be("\n     1           2      \n\n+---------+ +---------+\n" + "|         | |         |\n" + "|         | |         |     1\n" +                       "|         | |         |\n" + "+---------+ +---------+\n")
       }
     }
       "filled with streets" should {

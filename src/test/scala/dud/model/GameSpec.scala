@@ -17,16 +17,18 @@ class GameSpec extends AnyWordSpec {
         val turn = Turn(1)
         val game = Game(field1, player, turn)
         val game2 = Game(field2, player, turn)
+        val game3 = Game
         "filled" should {
             "use the Methods" in {
 
                 game.handle(Play()).toString should be("Some(Spieler 1 Nächste Strasse setzen)")
-
+                game.playersToString should be ("SpielerFarin\nSpielerRod\nSpielerBela\nSpielerHerbert")
                 game.toString should include ("SpielerFarin:  Points = 0")
                 game.toString should include ("SpielerRod:  Points = 0")
                 game.toString should include ("SpielerBela:  Points = 0")
                 game.toString should include ("SpielerHerbert:  Points = 0")
-
+                game.getField().toString should be (game.field.toString)
+                game.getPlayers().toString should be (game.players.toString)
                 game2.setBuilding(0, 0, Building("S1")).toString should be(Game(field3, player, turn).toString)
 
             }
