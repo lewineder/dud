@@ -56,7 +56,7 @@ class Tui(controller: ControllerInterface) extends Observer{
             case 'y' => controller.doAndPublish(controller.undo); None
             case 'l' => controller.load; None
             case 's' => controller.save; None
-            case 'h' => println("\n\nWillkommen zu Drunter und Drüber!!!\n" + "Eingabe in der Form: 2 4 2l [x y Kartenauswahl]\n" +
+            case 'h' => println("\n\nWillkommen zu Drunter und Drüber!!!\n" + "Eingabe in der Form: 2 4 2l [y x Kartenauswahl]\n" +
               "Kartenauswahl: {1, 2l, 2r, 2o, 2u, 3l, 3r, 3o, 3u} [Größenanzahl und Richtung, in die die Karte gelegt wird]\n " +
               "'q' -> quit\n 'z' -> redo\n 'y' -> undo\n 'l' -> load\n 's' -> save\n " +
               "\n Spiel endet, wenn von einem Spieler alle Häuser überdeckt sind."); None
