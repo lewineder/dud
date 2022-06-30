@@ -1,6 +1,6 @@
 package dud
 import aview.Tui
-import aview.gui.Gui
+//import aview.gui.Gui
 import model.game_component.GameInterface
 import controller_component.BaseIplt
 import controller_component.ControllerInterface
@@ -19,8 +19,8 @@ import com.google.inject.Guice
 
     lazy val controller:ControllerInterface = injector.getInstance(classOf[Controller])
 
-    val gui = new Gui(controller)
-    gui.repaint()
+    //val gui = new Gui(controller)
+    //gui.repaint()
     val tui = Tui(controller)
     tui.run
 

@@ -1,3 +1,4 @@
+/*
 package dud
 package aview
 package gui
@@ -200,3 +201,4 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
   }
   }
 }
+*/
