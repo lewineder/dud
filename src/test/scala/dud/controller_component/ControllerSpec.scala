@@ -21,7 +21,7 @@ class ControllerSpec extends AnyWordSpec {
     "change a field in the matrix when called" in {
       val fieldWithMove = controller.setBuilding(List(Move(1, 1, Building("H1"))))
       fieldWithMove.field.getBuilding(1, 1).toString should be(Building("H1").toString)
-      fieldWithMove.field.getBuilding(0, 0).toString should be(Building("Empty").toString)
+      fieldWithMove.field.getBuilding(0, 0).toString should be(Building("Ey").toString)
     }
     "notify its observers on change" in {
       class TestObserver(controller: Controller) extends Observer:
@@ -50,7 +50,7 @@ class ControllerSpec extends AnyWordSpec {
       game = controller.setBuilding(List(Move(0,1, Building("S2"))))
       game.field.getBuilding(0, 1).toString should be (Building("S2").toString)
       game = controller.undo
-      game.field.getBuilding(0, 1).toString should be (Building("Empty").toString)
+      game.field.getBuilding(0, 1).toString should be (Building("Ey").toString)
       game = controller.redo
       game.field.getBuilding(0, 1).toString should be (Building("S2").toString)
     }
