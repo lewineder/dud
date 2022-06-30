@@ -1,10 +1,12 @@
 package dud
 package model
+package move_component
 
-import game_component.BaseIplt.Building
 import move_component.BaseIplt.Move
+import model.game_component.BaseIplt.Building
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
+
 
 class MoveSpec extends AnyWordSpec{
   "A Move" should  {
