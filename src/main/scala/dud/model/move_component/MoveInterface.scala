@@ -1,3 +1,5 @@
-package dud.model.move_component
+package dud
+package model
+package move_component
 
 //Kein Funktionalität aktuell
