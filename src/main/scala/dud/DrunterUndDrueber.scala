@@ -1,30 +1,27 @@
 package dud
+import aview.Tui
+import aview.gui.Gui
+import model.game_component.GameInterface
+import controller_component.BaseIplt
+import controller_component.ControllerInterface
+import controller_component.BaseIplt.Controller
+import model.game_component.BaseIplt.{Building, Field, Game, Player, Turn}
 
-import dud.model.{Field, Game, Building, Turn, Player}
-import dud.controller.Controller
-import dud.aview.Tui
 import scala.io.StdIn.readLine
 
-
-@main def run(sx: Int = 6, sy: Int = 6): Unit =
-    println("> Willkommen zu drunter und drüber!")
-    val field = new Field(sx,sy,Building("Empty"))
-    println("Spielernamen Spieler 1 eingeben: ")
-        val player1 = scala.io.StdIn.readLine()
-    println("Spielernamen Spieler 2 eingeben: ")
-        val player2 = scala.io.StdIn.readLine()
-    println("Spielernamen Spieler 3 eingeben: ")
-        val player3 = scala.io.StdIn.readLine()
-    println("Spielernamen Spieler 4 eingeben: ")
-        val player4 = scala.io.StdIn.readLine()
-    val startBuilding = 3
-    val player = Array(Player(player1, startBuilding), Player(player2, startBuilding), Player(player3, startBuilding), Player(player4, startBuilding))
+import com.google.inject.Guice
 
 
+@main def run: Unit =
 
+    val injector = Guice.createInjector(new DrunterUndDrueberModule)
+    
 
-    val turn = Turn(0)
-    val game = Game(field, player, turn)
-    val controller = Controller(game)
+    lazy val controller:ControllerInterface = injector.getInstance(classOf[Controller])
+
+    val gui = new Gui(controller)
+    gui.repaint()
     val tui = Tui(controller)
     tui.run
+
+

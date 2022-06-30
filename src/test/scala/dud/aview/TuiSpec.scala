@@ -1,3 +1,5 @@
+
+/*
 package dud.aview
 
 import dud.model.*
@@ -43,3 +45,4 @@ class TuiSpec extends AnyWordSpec {
     }
   }
 }
+*/
