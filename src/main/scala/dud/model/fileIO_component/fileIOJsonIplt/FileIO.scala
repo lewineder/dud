@@ -40,7 +40,7 @@ class FileIO extends FileIOInterface {
   //etwas kürzere Version wie bei XML - allerdings auch etwas komplizierter
   def jsonToField(data: List[JsValue]): Field = {
     val size = scala.math.sqrt(data.length).toInt
-    Field(Array.tabulate(size,size)((x,y) => jsonToBuilding(data(y*size+x))))
+    Field(Array.tabulate(size,size)((y,x) => jsonToBuilding(data(y*size+x))))
   }
 
   def jsonToBuilding(building: JsValue): Building = {
