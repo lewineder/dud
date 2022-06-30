@@ -1,5 +1,6 @@
 package dud.model
-package move_component.BaseIplt
+package move_component
+package BaseIplt
 
 import game_component.BaseIplt.Building
 
