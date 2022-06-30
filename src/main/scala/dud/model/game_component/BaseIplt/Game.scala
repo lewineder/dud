@@ -24,6 +24,7 @@ case class Game (field: Field, players: Array[Player], turn: Turn) extends GameI
   def setBuilding(row: Int, col: Int, building: Building): Game =
     copy(field.setBuilding(row, col, building), players, turn)
 
+
   def setTurn(skip: Int): Turn = 
     turn.setTurn(skip)
 
