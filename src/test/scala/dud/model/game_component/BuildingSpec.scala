@@ -1,11 +1,13 @@
 package dud
 package model
+package game_component
 
 import game_component.BaseIplt.Building
-import java.awt.Color
 import game_component.BaseIplt.House
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
+
+import java.awt.Color
 
 class BuildingSpec extends AnyWordSpec {
   "A dud Building" when {

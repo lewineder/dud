@@ -1,10 +1,13 @@
 package dud
 package model
+package game_component
 
-import game_component.BaseIplt.{Building, Field, Game, Player, Turn}
+import dud.util.Play
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-import util.*
+import game_component.BaseIplt.{Field, Turn, Building, Game, Player}
+
+import scala.util.*
 
 
 class GameSpec extends AnyWordSpec {

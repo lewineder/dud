@@ -1,7 +1,9 @@
 package dud
 package model
+package game_component
 
-import game_component.BaseIplt.{Populate,Building, Field}
+import game_component.BaseIplt.Field
+import game_component.BaseIplt.Building
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
 

@@ -1,9 +1,10 @@
 package dud
 package model
+package game_component
 
-import game_component.BaseIplt.Player
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
+import game_component.BaseIplt.Player
 
 class PlayerSpec extends AnyWordSpec {
   "A Player" when {
