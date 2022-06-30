@@ -1,6 +1,4 @@
-#FROM hseeberger/scala-sbt
-#WORKDIR /dud
-#ADD . /dud
-#CMD sbt test
-
-#seeberger deprecated???
+FROM hseeberger/scala-sbt:17.0.2_1.6.2_3.1.1
+WORKDIR /dud
+ADD . /dud
+CMD sbt run
