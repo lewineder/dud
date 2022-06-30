@@ -1,11 +1,13 @@
 package dud
 package model
+package game_component
 
-import game_component.BaseIplt.Turn
-import util.{End, InitNew, Interrupt}
+import dud.util.{End, InitNew, Interrupt, Play}
 import org.scalatest.matchers.should.Matchers.*
 import org.scalatest.wordspec.AnyWordSpec
-import util.*
+import game_component.BaseIplt.Turn
+
+import scala.util.*
 
 class TurnSpec extends AnyWordSpec {
   "A Turn" when {
