@@ -1,4 +1,4 @@
-/*
+
 package dud
 package controller
 
@@ -52,4 +52,3 @@ class ControllerSpec extends AnyWordSpec {
     }
   }
 }
-*/
