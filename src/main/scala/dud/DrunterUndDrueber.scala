@@ -12,7 +12,7 @@ import scala.io.StdIn.readLine
 import com.google.inject.Guice
 
 
-@main def run(sx: Int = 6, sy: Int = 6): Unit =
+@main def run: Unit =
 
     val injector = Guice.createInjector(new DrunterUndDrueberModule)
     

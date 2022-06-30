@@ -2,7 +2,7 @@ package dud
 package controller_component
 package BaseIplt
 
-import com.google.inject.{Guice, Inject}
+
 import dud.model.fileIO_component.FileIOInterface
 import model.game_component.GameInterface
 import model.game_component.BaseIplt.Game
@@ -10,10 +10,12 @@ import model.move_component.BaseIplt.Move
 import model.game_component.GameState
 import util.*
 
+import scala.xml.{NodeSeq, PrettyPrinter}
 import java.io.*
 import play.api.libs.json.JsValue
 
-import scala.xml.{NodeSeq, PrettyPrinter}
+import com.google.inject.{Guice, Inject}
+
 
 case class Controller @Inject() (var game: GameInterface) extends ControllerInterface {
 

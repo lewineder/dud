@@ -45,9 +45,11 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
     contents += new Menu("Menu") {
       contents += new MenuItem(Action("Quit") {
         closeNow() })
-      contents += new MenuItem(Action("New Game") {
-        newGame()
+      contents += new MenuItem(Action("save") {
+        controller.save
       })
+      contents += new MenuItem(Action("load") {
+        controller.load })
       }
   }
   
@@ -105,7 +107,6 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
   class CellButton(x: Int, y: Int, bild: String) extends Button:
     icon = new ImageIcon(getClass.getResource(bild))
     border = null
-    //preferredSize = new Dimension(100,100)
     listenTo(mouse.clicks)
     reactions += {
       case MouseClicked(src, pt, mod, clicks, props) => {
@@ -191,7 +192,6 @@ class Gui(controller: ControllerInterface) extends Frame with Observer {
     contents = new BorderPanel {
     add(box, BorderPanel.Position.North)
     add(new Draw(field.col - 1,field.row - 1), BorderPanel.Position.Center)
-    //add(turnLabel, BorderPanel.Position.East)
     add(pictures, BorderPanel.Position.South)
     add(turnLabel, BorderPanel.Position.East)
     if (controller.game.turn.gamestate == Some(Finished(controller.game.turn)))

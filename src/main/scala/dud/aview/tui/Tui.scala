@@ -39,16 +39,14 @@ class Tui(controller: ControllerInterface) extends Observer{
         val name = split(2)
         name match
             case "1" => List(Move(x,y,Building("S2")))
-            case "2t" => List(Move(x - 1,y,Building("S2")), Move(x,y,Building("S3")))
+            case "2o" => List(Move(x - 1,y,Building("S2")), Move(x,y,Building("S3")))
             case "2r" => List(Move(x,y,Building("S1")), Move(x,y + 1,Building("S2")))
-            case "2b" => List(Move(x ,y ,Building("S3")), Move(x + 1,y,Building("S2")))
+            case "2u" => List(Move(x ,y ,Building("S3")), Move(x + 1,y,Building("S2")))
             case "2l" => List(Move(x ,y - 1,Building("S2")), Move(x ,y,Building("S1")))
-            case "3b" => List(Move(x + 2 ,y,Building("S2")), Move(x + 1 ,y,Building("S4")), Move(x,y,Building("S3")))
+            case "3u" => List(Move(x + 2 ,y,Building("S2")), Move(x + 1 ,y,Building("S4")), Move(x,y,Building("S3")))
             case "3r" => List(Move(x ,y - 2,Building("S2")), Move(x ,y,Building("S1")), Move(x ,y - 1,Building("S5")))
-            case "3t" => List(Move(x - 2 ,y,Building("S2")), Move(x ,y,Building("S3")), Move(x - 1,y,Building("S4")))
+            case "3o" => List(Move(x - 2 ,y,Building("S2")), Move(x ,y,Building("S3")), Move(x - 1,y,Building("S4")))
             case "3l" => List(Move( x ,y + 2,Building("S2")), Move(x ,y,Building("S1")), Move(x, y + 1,Building("S5")))
-        //val building = Building(name)
-       // Move(split(0).toInt - 1,split(1).toInt - 1, building)
     }
 
     def getInputLine(input: String): Option[List[Move]] =
@@ -58,6 +56,10 @@ class Tui(controller: ControllerInterface) extends Observer{
             case 'y' => controller.doAndPublish(controller.undo); None
             case 'l' => controller.load; None
             case 's' => controller.save; None
+            case 'h' => println("\n\nWillkommen zu Drunter und Drüber!!!\n" + "Eingabe in der Form: 2 4 2l [y x Kartenauswahl]\n" +
+              "Kartenauswahl: {1, 2l, 2r, 2o, 2u, 3l, 3r, 3o, 3u} [Größenanzahl und Richtung, in die die Karte gelegt wird]\n " +
+              "'q' -> quit\n 'z' -> redo\n 'y' -> undo\n 'l' -> load\n 's' -> save\n " +
+              "\n Spiel endet, wenn von einem Spieler alle Häuser überdeckt sind."); None
             case _ =>
                 toMove(input) match {
                     case Success(m) => Some(m)

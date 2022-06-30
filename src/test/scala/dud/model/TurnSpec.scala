@@ -16,7 +16,7 @@ class TurnSpec extends AnyWordSpec {
         turn.toString should be("Spieler 0 Nächste Strasse setzen")
 
         turn.handle(InitNew()) should be (turn.gamestate)
-        turn.toString should be("Spiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
+        turn.toString should be("Willkommen zu Drunter und Drüber!!!\n 'h' -> help\n\nSpiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
 
         turn.handle(Interrupt()) should be (turn.gamestate)
         turn.toString should be("Fehler beim setzen - zurück mit >> y <<")

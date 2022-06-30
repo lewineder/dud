@@ -21,9 +21,10 @@ jacocoReportSettings := JacocoReportSettings(
 
 //Excludes for Testing
 jacocoExcludes := Seq(
-  "src.main.scala.dud.aview*",
-  "src.main.scala.dud.DrunterundDrueber",
-  "src.main.scala.dud.DrunterundDrueberModule"
+  "dud.aview*",
+  "dud.DrunterUndDrueber",
+  "dud.DrunterUndDrueberModule",
+  "dud.model.fileIO_component*"
 )
 
 

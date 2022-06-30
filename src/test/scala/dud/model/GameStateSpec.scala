@@ -26,7 +26,7 @@ class GameStateSpec extends AnyWordSpec {
                 Playing(turn).toString should be ("Spieler 1 Nächste Strasse setzen")
                 Interrupted(turn).toString should be ("Fehler beim setzen - zurück mit >> y <<")
                 Finished(turn).toString should be ("✧･ﾟ: *✧･ﾟ:* 　Glückwunsch!!! End of Game　 *:･ﾟ✧*:･ﾟ✧")
-                Starting(turn).toString should be ("Spiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
+                Starting(turn).toString should be ("Willkommen zu Drunter und Drüber!!!\n 'h' -> help\n\nSpiel startet Spieler 1 bitte erste Strasse am Spielfeldrand setzen")
             }
         }
     }
